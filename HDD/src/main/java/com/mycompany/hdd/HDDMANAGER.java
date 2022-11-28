@@ -14,12 +14,16 @@ public class HDDMANAGER extends JFrame{
     
     public HDDMANAGER(){
         
-        Container managerScreen = getContentPane();
-        setTitle("호다닥 : 부산 재난 안전 관리 시스템");
-        setBounds(850,300,640,480);
-        managerScreen.setBackground(Color.white);
-        managerScreen.setLayout(null);
+        Container userScreen = getContentPane();
+        setTitle("호다닥 : 관리자 모드");
+        setBounds(850,300,500,300);
+        userScreen.setBackground(Color.white);
+        userScreen.setLayout(null);
         
+        
+        
+         setVisible(true);
+         
         
     }
     

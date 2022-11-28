@@ -49,8 +49,9 @@ public class HDD extends JFrame {
             
             @Override
             public void actionPerformed(ActionEvent e){
-                dispose();
-                HDDMANAGER ManagerHDD =new HDDMANAGER();
+                //dispose();
+                //HDDMANAGER ManagerHDD =new HDDMANAGER();
+                ManageLogIn LogIn = new ManageLogIn();
             }
         });
       

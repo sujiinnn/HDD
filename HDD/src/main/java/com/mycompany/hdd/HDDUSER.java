@@ -16,11 +16,9 @@ public class HDDUSER extends JFrame{
         
         Container userScreen = getContentPane();
         setTitle("호다닥 : 부산 재난 안전 관리 시스템");
-        setBounds(850,300,640,480);
+        setBounds(750,230,1020,630);
         userScreen.setBackground(Color.white);
         userScreen.setLayout(null);
-        
-        
         
         JButton AccidentButton = new JButton("사건 / 사고");
         AccidentButton.setSize(200, 80);
@@ -49,17 +47,13 @@ public class HDDUSER extends JFrame{
         ImageIcon Logo = new ImageIcon("src\\main\\java\\com\\mycompany\\hdd\\LogoSmall.PNG");
         JLabel HDDLogo = new JLabel(Logo);
         HDDLogo.setSize(100, 80);
-        HDDLogo.setLocation(10, 355);
-        
+        HDDLogo.setLocation(10, 495);
         
         ImageIcon BackImage = new ImageIcon("src\\main\\java\\com\\mycompany\\hdd\\BackButton.PNG");
-        //JLabel BackB = new JLabel(BackImage);
-        
         JButton BackButton = new JButton(BackImage);
         BackButton.setSize(80,80);
-        BackButton.setLocation(120,355);
+        BackButton.setLocation(120,495);
         BackButton.setBackground(Color.white);
-        
       
         userScreen.add(AccidentButton);
         userScreen.add(ShelterButton);
@@ -68,10 +62,8 @@ public class HDDUSER extends JFrame{
         userScreen.add(HDDLogo);
         userScreen.add(BackButton);
         
-        
         //drawline(220,5,220, 470);
 
-        
         setVisible(true);
         
         
