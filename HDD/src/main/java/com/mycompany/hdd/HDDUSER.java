@@ -54,6 +54,15 @@ public class HDDUSER extends JFrame{
         BackButton.setSize(80,80);
         BackButton.setLocation(120,495);
         BackButton.setBackground(Color.white);
+        
+        BackButton.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                HDD main = new HDD();
+                setVisible(false);
+            }
+        });
       
         userScreen.add(AccidentButton);
         userScreen.add(ShelterButton);
