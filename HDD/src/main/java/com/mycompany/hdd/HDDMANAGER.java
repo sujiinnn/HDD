@@ -59,7 +59,6 @@ public class HDDMANAGER extends JFrame {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                HDD main = new HDD();
                 setVisible(false);
             }
         });
