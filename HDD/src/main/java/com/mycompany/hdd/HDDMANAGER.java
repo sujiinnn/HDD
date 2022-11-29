@@ -14,12 +14,53 @@ public class HDDMANAGER extends JFrame{
     
     public HDDMANAGER(){
         
-        Container userScreen = getContentPane();
+        Container managerScreen = getContentPane();
         setTitle("호다닥 : 관리자 모드");
-        setBounds(850,300,500,300);
-        userScreen.setBackground(Color.white);
-        userScreen.setLayout(null);
+        setBounds(850,300,800,500);
+        managerScreen.setBackground(Color.white);
+        managerScreen.setLayout(null);
         
+        JButton AccidentButton = new JButton("사건 / 사고");
+        AccidentButton.setSize(200, 80);
+        AccidentButton.setLocation(0, 20);
+        AccidentButton.setBackground(Color.white);
+        AccidentButton.setFont(new Font("휴먼둥근헤드라인", Font.PLAIN, 18));
+        
+        JButton ShelterButton = new JButton("대피소");
+        ShelterButton.setSize(200, 80);
+        ShelterButton.setLocation(0, 102);
+        ShelterButton.setBackground(Color.white);
+        ShelterButton.setFont(new Font("휴먼둥근헤드라인", Font.PLAIN, 18));
+        
+        JButton MethodButton = new JButton("대처 방법");
+        MethodButton.setSize(200, 80);
+        MethodButton.setLocation(0, 184);
+        MethodButton.setBackground(Color.white);
+        MethodButton.setFont(new Font("휴먼둥근헤드라인", Font.PLAIN, 18));
+        
+        JButton UseButton = new JButton("안전도구 사용 방법");
+        UseButton.setSize(200, 80);
+        UseButton.setLocation(0, 266);
+        UseButton.setBackground(Color.white);
+        UseButton.setFont(new Font("휴먼둥근헤드라인", Font.PLAIN, 18));
+        
+        ImageIcon Logo = new ImageIcon("src\\main\\java\\com\\mycompany\\hdd\\LogoSmall.PNG");
+        JLabel HDDLogo = new JLabel(Logo);
+        HDDLogo.setSize(100, 80);
+        HDDLogo.setLocation(10, 365);
+        
+        ImageIcon BackImage = new ImageIcon("src\\main\\java\\com\\mycompany\\hdd\\BackButton.PNG");
+        JButton BackButton = new JButton(BackImage);
+        BackButton.setSize(80,80);
+        BackButton.setLocation(120,365);
+        BackButton.setBackground(Color.white);
+      
+        managerScreen.add(AccidentButton);
+        managerScreen.add(ShelterButton);
+        managerScreen.add(MethodButton);
+        managerScreen.add(UseButton);
+        managerScreen.add(HDDLogo);
+        managerScreen.add(BackButton);
         
         
          setVisible(true);

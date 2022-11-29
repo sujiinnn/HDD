@@ -21,7 +21,7 @@ public class ManageLogIn extends JFrame{
         JLabel Infor2 = new JLabel ("일반 사용자는 '호다닥 달려가기'를 이용해주세요.");
         
         JLabel word = new JLabel("비밀번호");
-        JTextField passwordIN = new JTextField();
+        JPasswordField passwordIN = new JPasswordField();
         
         Infor.setBounds(112, 30, 300, 30);
         Infor.setFont(new Font("맑은 고딕", Font.BOLD, 12));
@@ -44,7 +44,34 @@ public class ManageLogIn extends JFrame{
         LogInScreen.add(word);
         LogInScreen.add(passwordIN);
         LogInScreen.add(Log);
-
+        
+        Log.addActionListener(new ActionListener(){
+            
+            @Override
+            public void actionPerformed(ActionEvent e){
+                
+                dispose();
+                
+                String PW = "22hashtag#";
+                String input = new String (passwordIN.getPassword());
+                
+                if (input.equals(PW)){ // 비밀번호 비교 (아마도 for 문)
+                    HDDMANAGER Manager = new HDDMANAGER();
+                }
+                
+                else {
+                    
+                    String s1 = "<html><div width='115px' align='center'>";
+                    String s2 = "</div></html>";
+                    // 중앙 정렬
+                    
+                    String errorms = s1 + "비밀번호가 틀렸습니다." + s2;
+                    
+                    JLabel ms = new JLabel(errorms);
+                    JOptionPane.showMessageDialog(null, ms);
+                }
+            }
+        });
 
         setVisible(true);
     }
