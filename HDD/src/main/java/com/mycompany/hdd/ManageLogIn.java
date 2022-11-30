@@ -68,7 +68,7 @@ public class ManageLogIn extends JFrame{
                     String errorms = s1 + "비밀번호가 틀렸습니다." + s2;
                     
                     JLabel ms = new JLabel(errorms);
-                    JOptionPane.showMessageDialog(null, ms);
+                    JOptionPane.showMessageDialog(null, ms,"비밀번호 오류",JOptionPane.WARNING_MESSAGE);
                 }
             }
         });
