@@ -15,12 +15,57 @@ public class HDDUSER extends JFrame {
         setBounds(750, 230, 1020, 580);
         userScreen.setBackground(Color.white);
         userScreen.setLayout(null);
+        
+        JPanel contentA = new JPanel();
+        contentA.setBounds(210, 0,800,580);
+        contentA.setBackground(Color.white);
+        contentA.setLayout(null);
+        
+        JPanel contentS = new JPanel();
+        contentS.setBounds(210, 0,800,580);
+        contentS.setBackground(Color.white);
+        contentS.setLayout(null);
+        
+        JPanel contentM = new JPanel();
+        contentM.setBounds(210, 0,800,580);
+        contentM.setBackground(Color.white);
+        contentM.setLayout(null);
+        
+        JPanel contentU = new JPanel();
+        contentU.setBounds(210, 0,800,580);
+        contentU.setBackground(Color.white);
+        contentU.setLayout(null);
+        
+        
+       
+        
+        
+        userScreen.add(contentU);
 
         JButton AccidentButton = new JButton("사건 / 사고");
         AccidentButton.setSize(200, 80);
         AccidentButton.setLocation(0, 20);
         AccidentButton.setBackground(Color.white);
         AccidentButton.setFont(new Font("휴먼둥근헤드라인", Font.PLAIN, 18));
+        
+
+        AccidentButton.addActionListener(new ActionListener() {
+            
+            public void actionPerformed(ActionEvent e) {
+                
+                 userScreen.add(contentA);
+                 
+                 contentS.setVisible(false);
+                 contentM.setVisible(false);
+                 contentU.setVisible(false);
+                 contentA.setVisible(true);
+                 
+                 
+            
+            }
+            
+            });
+        
 
         JButton ShelterButton = new JButton("대피소");
         ShelterButton.setSize(200, 80);
@@ -35,30 +80,37 @@ public class HDDUSER extends JFrame {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                
+                userScreen.add(contentS);
+              
+                 contentA.setVisible(false);
+                 contentM.setVisible(false);
+                 contentU.setVisible(false);
+                 contentS.setVisible(true);
 
                 String s1 = "<html><div width='115px' align='center'>";
                 String s2 = "</div></html>";
 
                 JLabel ChoiceLocation = new JLabel(" 위치를 선택해 주세요 ! ");
-                ChoiceLocation.setBounds(230, 20, 200, 30);
+                ChoiceLocation.setBounds(20, 20, 200, 30);
                 ChoiceLocation.setFont(new Font("HY헤드라인M", Font.PLAIN, 15));
 
                 JLabel ChoiceS = new JLabel(" 대피소 종류를 선택해 주세요 ! ");
-                ChoiceS.setBounds(450, 20, 300, 30);
+                ChoiceS.setBounds(340, 20, 300, 30);
                 ChoiceS.setFont(new Font("HY헤드라인M", Font.PLAIN, 15));
 
                 JLabel InforM1 = new JLabel(" 위치와 대피소 종류 ");
                 JLabel InforM2 = new JLabel(" 두가지 모두 선택하신 후에 ");
                 JLabel InforM3 = new JLabel(" 아래의 다음 버튼을 눌러주세요 ! ");
 
-                InforM1.setBounds(770, 30, 300, 30);
+                InforM1.setBounds(560, 30, 300, 30);
                 InforM1.setFont(new Font("HY헤드라인M", Font.PLAIN, 15));
 
-                InforM2.setBounds(750, 60, 300, 30);
+                InforM2.setBounds(540, 60, 300, 30);
                 InforM2.setFont(new Font("HY헤드라인M", Font.PLAIN, 15));
                 InforM2.setForeground(Color.red);
 
-                InforM3.setBounds(730, 90, 300, 30);
+                InforM3.setBounds(530, 90, 300, 30);
                 InforM3.setFont(new Font("HY헤드라인M", Font.PLAIN, 15));
 
                 String[] Bgugun = {"  강서구", "  금정구", "  기장군", "  동구", "  동래구", "  부산진구", "  서구",
@@ -67,11 +119,11 @@ public class HDDUSER extends JFrame {
                 JList ShelL = new JList(Bgugun);
                 ShelL.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
                 ShelL.setBackground(new Color(242, 255, 237));
-                ShelL.setBounds(220, 60, 200, 390);
+                ShelL.setBounds(10, 60, 200, 390);
                 ShelL.setFont(new Font("HY헤드라인M", Font.PLAIN, 18));
 
                 JButton NextS = new JButton("다음");
-                NextS.setBounds(790, 140, 100, 30);
+                NextS.setBounds(580, 140, 100, 30);
                 NextS.setBackground(new Color(248, 248, 248));
                 NextS.setFont(new Font("맑은 고딕", Font.BOLD, 13));
 
@@ -79,31 +131,31 @@ public class HDDUSER extends JFrame {
                 JCheckBox OutsideS = new JCheckBox("지진 옥외대피장소");
                 JCheckBox CivilS = new JCheckBox("민방위 대피시설");
 
-                EmergencyS.setBounds(450, 55, 230, 30);
-                OutsideS.setBounds(450, 95, 230, 30);
-                CivilS.setBounds(450, 135, 230, 30);
+                EmergencyS.setBounds(240, 55, 230, 30);
+                OutsideS.setBounds(240, 95, 230, 30);
+                CivilS.setBounds(240, 135, 230, 30);
 
                 EmergencyS.setFont(new Font("HY헤드라인M", Font.PLAIN, 15));
                 OutsideS.setFont(new Font("HY헤드라인M", Font.PLAIN, 15));
                 CivilS.setFont(new Font("HY헤드라인M", Font.PLAIN, 15));
 
-                userScreen.add(ShelL);
-                userScreen.add(ChoiceLocation);
-                userScreen.add(NextS);
-                userScreen.add(EmergencyS);
-                userScreen.add(OutsideS);
-                userScreen.add(CivilS);
-                userScreen.add(ChoiceS);
-                userScreen.add(InforM1);
-                userScreen.add(InforM2);
-                userScreen.add(InforM3);
+                contentS.add(ShelL);
+                contentS.add(ChoiceLocation);
+                contentS.add(NextS);
+                contentS.add(EmergencyS);
+                contentS.add(OutsideS);
+               contentS.add(CivilS);
+                contentS.add(ChoiceS);
+                contentS.add(InforM1);
+                contentS.add(InforM2);
+               contentS.add(InforM3);
 
                 JLabel tt = new JLabel();
-                tt.setBounds(470, 180, 100, 30);
+                tt.setBounds(260, 180, 100, 30);
                 tt.setFont(new Font("HY헤드라인M", Font.PLAIN, 15));
 
-                JLabel announ = new JLabel("에 있는 대피소입니다 !");
-                announ.setBounds(540, 180, 300, 30);
+                JLabel announ = new JLabel("에 있는 대피시설입니다 !");
+                announ.setBounds(335, 180, 300, 30);
                 announ.setFont(new Font("HY헤드라인M", Font.PLAIN, 15));
 
                 NextS.addActionListener(new ActionListener() {
@@ -132,8 +184,8 @@ public class HDDUSER extends JFrame {
 
                             tt.setText(Text);
 
-                            userScreen.add(tt);
-                            userScreen.add(announ);
+                            contentS.add(tt);
+                            contentS.add(announ);
 
                             announ.revalidate();
                             announ.repaint();
@@ -175,7 +227,7 @@ public class HDDUSER extends JFrame {
                 InforM3.repaint();
 
             }
-            
+   
         });
 
         JButton MethodButton = new JButton("대처 방법");
@@ -190,13 +242,16 @@ public class HDDUSER extends JFrame {
         MethodButton.addActionListener(new ActionListener() {
             
             public void actionPerformed(ActionEvent e) {
+                userScreen.add(contentM);
                  
+                contentS.setVisible(false);
+                contentM.setVisible(true);
+                //userScreen.repaint();
                 
-                userScreen.add(An);
+                contentM.add(An);
                 
                  An.revalidate();
                  An.repaint();
-            
             
         }
                 });
@@ -206,6 +261,23 @@ public class HDDUSER extends JFrame {
         UseButton.setLocation(0, 266);
         UseButton.setBackground(Color.white);
         UseButton.setFont(new Font("휴먼둥근헤드라인", Font.PLAIN, 18));
+        
+         UseButton.addActionListener(new ActionListener() {
+            
+            public void actionPerformed(ActionEvent e) {
+                
+                 userScreen.add(contentU);
+                 
+                 contentA.setVisible(false);
+                 contentS.setVisible(false);
+                 contentM.setVisible(false);
+                 contentU.setVisible(true);
+                 
+                 
+            
+            }
+            
+            });
 
         ImageIcon Logo = new ImageIcon("src\\main\\java\\com\\mycompany\\hdd\\LogoSmall.PNG");
         JLabel HDDLogo = new JLabel(Logo);
