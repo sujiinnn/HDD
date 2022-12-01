@@ -141,7 +141,6 @@ public class HDDUSER extends JFrame {
                             tt.revalidate();
                             tt.repaint();
                         }
-
                     }
                 });
 
@@ -176,6 +175,7 @@ public class HDDUSER extends JFrame {
                 InforM3.repaint();
 
             }
+            
         });
 
         JButton MethodButton = new JButton("대처 방법");
@@ -183,6 +183,23 @@ public class HDDUSER extends JFrame {
         MethodButton.setLocation(0, 184);
         MethodButton.setBackground(Color.white);
         MethodButton.setFont(new Font("휴먼둥근헤드라인", Font.PLAIN, 18));
+        
+        JButton An = new JButton("사건 / 사고");
+        An.setBounds(200,200,200,200);
+        
+        MethodButton.addActionListener(new ActionListener() {
+            
+            public void actionPerformed(ActionEvent e) {
+                 
+                
+                userScreen.add(An);
+                
+                 An.revalidate();
+                 An.repaint();
+            
+            
+        }
+                });
 
         JButton UseButton = new JButton("안전도구 사용 방법");
         UseButton.setSize(200, 80);
