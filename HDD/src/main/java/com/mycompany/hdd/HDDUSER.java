@@ -182,7 +182,7 @@ public class HDDUSER extends JFrame {
         SituL.setBounds(20, 120, 200, 350);
         SituL.setFont(new Font("HY헤드라인M", Font.PLAIN, 18));
 
-        String[] Medi = {"  상황1", "  상황2", "  상황3", "  상황4", "  상황5", "  상황6", "  상황7",
+        String[] Medi = {"  심폐소생술", "  화상", "  벌쏘임", "  뱀물림", "  붉은불개미", "  상황6", "  상황7",
             "  상황8", "  상황9", "  상황10", "  상황11", "  상황12", "  상황13", "  상황14"};
 
         JList MediL = new JList(Medi);
@@ -415,27 +415,9 @@ public class HDDUSER extends JFrame {
 
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        // 응급의료 객체 생성하고 위에랑 똑같이 하기
-                        if (MediL.getSelectedIndex() == -1) {
-
-                            String MediLER = s1 + " 응급의료 상황을 골라주세요. " + s2;
-
-                            JLabel MLER = new JLabel(MediLER);
-                            JOptionPane.showMessageDialog(null, MLER, " 응급의료 선택 오류", JOptionPane.WARNING_MESSAGE);
-
-                        } else {
-                            switch (MediL.getSelectedValue().toString().trim()) { // 선택된 아이템을 문자열로 변경 후 앞 뒤 공백 제거
-                                case "상황1":                                    
-                                    System.out.println(MediL.getSelectedValue().toString().trim() + "입니다.");
-                                    break;
-                                case "상황2":                                    
-                                    System.out.println(MediL.getSelectedValue().toString().trim() + "입니다.");
-                                    break;
-                                default:
-                                    System.out.println("응급 의료 상황 선택했다.");
-                            }
-                            
-                        }
+                        
+                        Medical medical = new Medical(e, MediL);
+                        medical.run();
                     }
 
                 });
