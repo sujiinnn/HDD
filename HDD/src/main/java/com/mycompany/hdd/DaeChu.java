@@ -5,23 +5,36 @@
 package com.mycompany.hdd;
 
 import java.awt.event.ActionEvent;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
 
 /**
  *
  * @author sujin 내용 : 상황 대처법 관련 클래스
  */
+
+
+
 public class DaeChu {
 
     ActionEvent selector = null;
     JList SituL = null;
     String s1 = "<html><div width='115px' align='center'>";
     String s2 = "</div></html>";
+    
 
     public DaeChu() {
         // 기본 생성자 사용할 일 있으면 내용 추가하기
+        //JTextArea txtArea = new JTextArea();
+        //txtArea.setBounds(230, 0 ,600, 560);
+        
+        //contentM.add(txtArea);
+        
     }
 
     public DaeChu(ActionEvent e, JList SituL) { // ActionEvent 필요 없으면 제거하기
@@ -46,7 +59,7 @@ public class DaeChu {
             switch (SituL.getSelectedValue().toString().trim()) { // 선택된 아이템을 문자열로 변경 후 앞 뒤 공백 제거
                 case "화재":
                     System.out.println(SituL.getSelectedValue().toString().trim() + "입니다.");
-
+                    
                     // 화재 관련 내용 크롤링하여 패널에 추가하기. ex) 기존에 테스트했던 코드들 복사 붙여넣기 이후 수정 필요한 부분만 수정해서 사용하기
                     break;
                 case "지진":
