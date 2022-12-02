@@ -7,6 +7,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class HDDUSER extends JFrame {
 
@@ -170,7 +173,7 @@ public class HDDUSER extends JFrame {
         Medical.setBounds(20, 70, 200, 30);
         Medical.setFont(new Font("HY헤드라인M", Font.PLAIN, 15));
 
-        String[] Situ = {"  상황1", "  상황2", "  상황3", "  상황4", "  상황5", "  상황6", "  상황7",
+        String[] Situ = {"  화재", "  지진", "  해일", "  상황4", "  상황5", "  상황6", "  상황7",
             "  상황8", "  상황9", "  상황10", "  상황11", "  상황12", "  상황13", "  상황14"};
 
         JList SituL = new JList(Situ);
@@ -202,8 +205,8 @@ public class HDDUSER extends JFrame {
         Rg.add(Medical);
 
         contentM.add(Situation);
-        contentM.add(Medical);
-
+        contentM.add(Medical);        
+        
         //--------------------------------------------------------- 대처법
         
         
@@ -340,6 +343,7 @@ public class HDDUSER extends JFrame {
                             return;
                         }
 
+                        // 상황 대처법이 선택되었을 때 실행되는 코드
                         if (Situation.isSelected()) {
 
                             MediL.setVisible(false);
@@ -364,15 +368,16 @@ public class HDDUSER extends JFrame {
                 });
 
                 Medical.addItemListener(new ItemListener() {
-
-                    public void itemStateChanged(ItemEvent e) {
-
+                                      
+                    public void itemStateChanged(ItemEvent e) {                        
+                        
                         if (e.getStateChange() == ItemEvent.DESELECTED) {
                             return;
                         }
 
+                        // 응급 의료 대처법이 선택 되었을 때 실행되는 코드
                         if (Medical.isSelected()) {
-
+                            System.out.println();
                             SituL.setVisible(false);
                             NextM.setVisible(false);
 
@@ -398,24 +403,19 @@ public class HDDUSER extends JFrame {
 
                     @Override
                     public void actionPerformed(ActionEvent e) {
-
-                        if (SituL.getSelectedIndex() == -1) {
-
-                            String SituLER = s1 + " 상황 대처법을 골라주세요. " + s2;
-
-                            JLabel SLER = new JLabel(SituLER);
-                            JOptionPane.showMessageDialog(null, SLER, " 상황 선택 오류", JOptionPane.WARNING_MESSAGE);
-
-                        }
-
+                        
+                        // 상황 대처법 객체 생성 후 실행
+                        DaeChu daechu = new DaeChu(e, SituL);
+                        daechu.run();
                     }
                 });
 
+                // 응급의료 상황 아이템을 선택하지 않았을 경우에 -1 반환
                 NextM2.addActionListener(new ActionListener() {
 
                     @Override
                     public void actionPerformed(ActionEvent e) {
-
+                        // 응급의료 객체 생성하고 위에랑 똑같이 하기
                         if (MediL.getSelectedIndex() == -1) {
 
                             String MediLER = s1 + " 응급의료 상황을 골라주세요. " + s2;
@@ -423,6 +423,18 @@ public class HDDUSER extends JFrame {
                             JLabel MLER = new JLabel(MediLER);
                             JOptionPane.showMessageDialog(null, MLER, " 응급의료 선택 오류", JOptionPane.WARNING_MESSAGE);
 
+                        } else {
+                            switch (MediL.getSelectedValue().toString().trim()) { // 선택된 아이템을 문자열로 변경 후 앞 뒤 공백 제거
+                                case "상황1":                                    
+                                    System.out.println(MediL.getSelectedValue().toString().trim() + "입니다.");
+                                    break;
+                                case "상황2":                                    
+                                    System.out.println(MediL.getSelectedValue().toString().trim() + "입니다.");
+                                    break;
+                                default:
+                                    System.out.println("응급 의료 상황 선택했다.");
+                            }
+                            
                         }
                     }
 
@@ -447,7 +459,7 @@ public class HDDUSER extends JFrame {
             }
 
         });
-
+        
         //-------------------------------------------------------- 사용법 액션
         ImageIcon Logo = new ImageIcon("src\\main\\java\\com\\mycompany\\hdd\\LogoSmall.PNG");
         JLabel HDDLogo = new JLabel(Logo);
