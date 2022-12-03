@@ -21,7 +21,7 @@ public class Crawler {
     Elements title = null; // select 사용하기
     Elements subtitle = null;
     Elements contents = null;
-    Elements image = null;
+    Elements contents2 = null;
    
     
     public Crawler(String url) throws IOException {
