@@ -201,17 +201,11 @@ public class HDDUSER extends JFrame {
         NextM2.setBackground(new Color(248, 248, 248));
         NextM2.setFont(new Font("맑은 고딕", Font.BOLD, 13));
         
-        JTextArea txtArea = new JTextArea();
-        txtArea.setBounds(230, 20, 560, 515);
-        txtArea.setBackground(Color.red);
-        
-
         Rg.add(Situation);
         Rg.add(Medical);
 
         contentM.add(Situation);
-        contentM.add(Medical);    
-        contentM.add(txtArea);
+        contentM.add(Medical);
         
         //--------------------------------------------------------- 대처법
         
@@ -412,7 +406,9 @@ public class HDDUSER extends JFrame {
                         
                         // 상황 대처법 객체 생성 후 실행
                         DaeChu daechu = new DaeChu(e, SituL);
-                        daechu.run();
+                        
+                        contentM.add(daechu.scroll());
+                        contentM.add(daechu.run());
                     }
                 });
 
