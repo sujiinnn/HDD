@@ -313,17 +313,13 @@ public class HDDUSER extends JFrame {
 
                             public void actionPerformed(ActionEvent e) {
                                 
+                                /*
                                 JComboBox CYF = (JComboBox) e.getSource();
                                 int indexCYF = CYF.getSelectedIndex();
                                 
                                 JComboBox CYL = (JComboBox) e.getSource();
                                 int indexCYL = CYL.getSelectedIndex();
-                                
-                                
-                                
-                                
-                                
-
+*/
                                 contentA.add(CauseA);
                                 contentA.add(Cause);
                                 contentA.add(SearchA);
