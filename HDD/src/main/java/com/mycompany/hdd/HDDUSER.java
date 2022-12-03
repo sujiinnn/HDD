@@ -312,29 +312,27 @@ public class HDDUSER extends JFrame {
                         NextA.addActionListener(new ActionListener() {
 
                             public void actionPerformed(ActionEvent e) {
-                                
-                                if (YearF.getSelectedIndex() > YearL.getSelectedIndex()){
-                                    
+
+                                if (YearF.getSelectedIndex() > YearL.getSelectedIndex()) {
+
                                     String YearER = s1 + " 시작연도는 종료연도보다 \n"
                                             + " 과거여야합니다. " + s2;
 
                                     JLabel YER = new JLabel(YearER);
                                     JOptionPane.showMessageDialog(null, YER, "연도 선택 오류", JOptionPane.WARNING_MESSAGE);
-                                }
-                                
-                                else {
-                                contentA.add(CauseA);
-                                contentA.add(Cause);
-                                contentA.add(SearchA);
+                                } else {
+                                    contentA.add(CauseA);
+                                    contentA.add(Cause);
+                                    contentA.add(SearchA);
 
-                                CauseA.revalidate();
-                                CauseA.repaint();
+                                    CauseA.revalidate();
+                                    CauseA.repaint();
 
-                                Cause.revalidate();
-                                Cause.repaint();
+                                    Cause.revalidate();
+                                    Cause.repaint();
 
-                                SearchA.revalidate();
-                                SearchA.repaint();
+                                    SearchA.revalidate();
+                                    SearchA.repaint();
                                 }
                             }
                         });
@@ -555,7 +553,7 @@ public class HDDUSER extends JFrame {
                 contentS.setVisible(false);
                 contentM.setVisible(false);
                 contentU.setVisible(true);
-                
+
                 NextU.addActionListener(new ActionListener() {
 
                     @Override
@@ -569,12 +567,10 @@ public class HDDUSER extends JFrame {
                             JOptionPane.showMessageDialog(null, UER, "사용방법 선택 오류", JOptionPane.WARNING_MESSAGE);
 
                         }
-                        
-                        
-                        
+
                     }
                 });
-              
+
                 UseL.revalidate();
                 UseL.repaint();
 
@@ -602,6 +598,39 @@ public class HDDUSER extends JFrame {
         BackButton.setSize(80, 80);
         BackButton.setLocation(120, 445);
         BackButton.setBackground(Color.white);
+        
+        ImageIcon MainLogo = new ImageIcon("src\\main\\java\\com\\mycompany\\hdd\\LogoMain.png");
+        JLabel MLogo = new JLabel(MainLogo);
+        MLogo.setBounds(250,100,300,300);
+        
+        JLabel T1 = new JLabel(" 안녕하세요. ");
+        T1.setBounds(720, 170, 200, 30);
+        T1.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
+        
+        JLabel T2 = new JLabel(" 저희 '호다닥 : 부산 재난 안전 관리 시스템' 은 ");
+        T2.setBounds(580, 200, 400, 30);
+        T2.setFont(new Font("맑은 고딕", Font.BOLD, 18));
+        T2.setForeground(new Color(255,72,72));
+        
+        JLabel T3 = new JLabel(" 부산시에 일어나는 다양한 사건/사고와 ");
+        T3.setBounds(630, 230, 400, 30);
+        T3.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+        //T3.setForeground(new Color(137,106,183));
+        
+        JLabel T4 = new JLabel(" 긴급 상황 시에 유용하게 쓰이는 정보들을 ");
+        T4.setBounds(630, 260, 400, 30);
+        T4.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+        //T4.setForeground(new Color(137,106,183));
+        
+        JLabel T5 = new JLabel(" 한 눈에 알아볼 수 있게 만든 ");
+        T5.setBounds(670, 290, 400, 30);
+        T5.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
+        
+        JLabel T6 = new JLabel(" 재난 정보 제공 프로그램입니다. ");
+        T6.setBounds(630, 320, 400, 30);
+        T6.setFont(new Font("맑은 고딕", Font.BOLD, 18));
+        T6.setForeground(new Color(67,117,219));
+        
 
         BackButton.addActionListener(new ActionListener() {
 
@@ -617,12 +646,23 @@ public class HDDUSER extends JFrame {
         contentM.setVisible(false);
         contentU.setVisible(false);
 
+        
+        userScreen.add(MLogo);
+        userScreen.add(T1);
+        userScreen.add(T2);
+        userScreen.add(T3);
+        userScreen.add(T4);
+        userScreen.add(T5);
+        userScreen.add(T6);
+        
+        
         userScreen.add(AccidentButton);
         userScreen.add(ShelterButton);
         userScreen.add(MethodButton);
         userScreen.add(UseButton);
         userScreen.add(HDDLogo);
         userScreen.add(BackButton);
+        
 
         setVisible(true);
 
