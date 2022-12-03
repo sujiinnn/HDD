@@ -264,9 +264,9 @@ public class HDDUSER extends JFrame {
         UseL.setFont(new Font("HY헤드라인M", Font.PLAIN, 18));
 
         JButton NextU = new JButton("다음");
-        NextM2.setBounds(120, 480, 100, 30);
-        NextM2.setBackground(new Color(248, 248, 248));
-        NextM2.setFont(new Font("맑은 고딕", Font.BOLD, 13));
+        NextU.setBounds(120, 480, 100, 30);
+        NextU.setBackground(new Color(248, 248, 248));
+        NextU.setFont(new Font("맑은 고딕", Font.BOLD, 13));
 
         contentU.add(UseL);
         contentU.add(UT1);
@@ -313,13 +313,16 @@ public class HDDUSER extends JFrame {
 
                             public void actionPerformed(ActionEvent e) {
                                 
-                                /*
-                                JComboBox CYF = (JComboBox) e.getSource();
-                                int indexCYF = CYF.getSelectedIndex();
+                                if (YearF.getSelectedIndex() > YearL.getSelectedIndex()){
+                                    
+                                    String YearER = s1 + " 시작연도는 종료연도보다 \n"
+                                            + " 과거여야합니다. " + s2;
+
+                                    JLabel YER = new JLabel(YearER);
+                                    JOptionPane.showMessageDialog(null, YER, "연도 선택 오류", JOptionPane.WARNING_MESSAGE);
+                                }
                                 
-                                JComboBox CYL = (JComboBox) e.getSource();
-                                int indexCYL = CYL.getSelectedIndex();
-*/
+                                else {
                                 contentA.add(CauseA);
                                 contentA.add(Cause);
                                 contentA.add(SearchA);
@@ -332,7 +335,7 @@ public class HDDUSER extends JFrame {
 
                                 SearchA.revalidate();
                                 SearchA.repaint();
-
+                                }
                             }
                         });
 
@@ -376,7 +379,7 @@ public class HDDUSER extends JFrame {
                             String LocationER = s1 + " 지역을 선택해주세요. " + s2;
 
                             JLabel LER = new JLabel(LocationER);
-                            JOptionPane.showMessageDialog(null, LER, "인원 수 오류", JOptionPane.WARNING_MESSAGE);
+                            JOptionPane.showMessageDialog(null, LER, " 지역 선택 오류", JOptionPane.WARNING_MESSAGE);
 
                         } else if (!EmergencyS.isSelected() && !OutsideS.isSelected() && !CivilS.isSelected()) {
 
@@ -552,7 +555,26 @@ public class HDDUSER extends JFrame {
                 contentS.setVisible(false);
                 contentM.setVisible(false);
                 contentU.setVisible(true);
+                
+                NextU.addActionListener(new ActionListener() {
 
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+
+                        if (UseL.getSelectedIndex() == -1) {
+
+                            String UseER = s1 + " 안전도구 종류를 선택해주세요. " + s2;
+
+                            JLabel UER = new JLabel(UseER);
+                            JOptionPane.showMessageDialog(null, UER, "사용방법 선택 오류", JOptionPane.WARNING_MESSAGE);
+
+                        }
+                        
+                        
+                        
+                    }
+                });
+              
                 UseL.revalidate();
                 UseL.repaint();
 
