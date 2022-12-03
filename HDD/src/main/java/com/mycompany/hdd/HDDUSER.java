@@ -107,10 +107,10 @@ public class HDDUSER extends JFrame {
         JLabel InforM2 = new JLabel(" 두가지 모두 선택하신 후에 ");
         JLabel InforM3 = new JLabel(" 아래의 다음 버튼을 눌러주세요 ! ");
 
-        InforM1.setBounds(560, 30, 300, 30);
+        InforM1.setBounds(570, 30, 300, 30);
         InforM1.setFont(new Font("HY헤드라인M", Font.PLAIN, 15));
 
-        InforM2.setBounds(540, 60, 300, 30);
+        InforM2.setBounds(550, 60, 300, 30);
         InforM2.setFont(new Font("HY헤드라인M", Font.PLAIN, 15));
         InforM2.setForeground(Color.red);
 
@@ -209,10 +209,35 @@ public class HDDUSER extends JFrame {
         
         //--------------------------------------------------------- 대처법
         
+        String[] UseS = {"  사용법1", "  사용법2", "  사용법3", "  사용법4", "  사용법5", "  사용법6", "  사용법7",
+            "  사용법8", "  사용법9", "  사용법10", "  사용법11", "  사용법12", "  사용법13", "  사용법14"};
+        
+        JLabel UT1 = new JLabel(" 원하시는 안전도구를 ");
+        JLabel UT2 = new JLabel(" 선택해주세요 ! ");
+        
+        UT1.setBounds(20, 30, 300, 30);
+        UT1.setFont(new Font("HY헤드라인M", Font.PLAIN, 18));
+        
+        UT2.setBounds(50, 60, 300, 30);
+        UT2.setFont(new Font("HY헤드라인M", Font.PLAIN, 18));
         
         
+        JList UseL = new JList(UseS);
+        UseL.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        UseL.setBackground(new Color(242, 250, 237));
+        UseL.setBounds(20, 110, 200, 350);
+        UseL.setFont(new Font("HY헤드라인M", Font.PLAIN, 18));
+        
+        JButton NextU = new JButton("다음");
+        NextM2.setBounds(120, 480, 100, 30);
+        NextM2.setBackground(new Color(248, 248, 248));
+        NextM2.setFont(new Font("맑은 고딕", Font.BOLD, 13));
         
         
+        contentU.add(UseL);
+        contentU.add(UT1);
+        contentU.add(UT2);
+        contentU.add(NextU);
         
         
         
@@ -439,6 +464,18 @@ public class HDDUSER extends JFrame {
                 contentS.setVisible(false);
                 contentM.setVisible(false);
                 contentU.setVisible(true);
+                
+                UseL.revalidate();
+                UseL.repaint();
+                
+                UT1.revalidate();
+                UT1.repaint();
+                
+                UT2.revalidate();
+                UT2.repaint();
+                
+                NextU.revalidate();
+                NextU.repaint();
 
             }
 
