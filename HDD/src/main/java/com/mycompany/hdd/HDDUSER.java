@@ -210,7 +210,7 @@ public class HDDUSER extends JFrame {
         Medical.setBounds(20, 70, 200, 30);
         Medical.setFont(new Font("HY헤드라인M", Font.PLAIN, 15));
 
-        String[] Situ = {"  화재", "  지진", "  해일", "  침수", "  지진해일", "  태풍", "  상황7",
+        String[] Situ = {"  화재", "  지진", "  해일", "  상황4", "  상황5", "  상황6", "  상황7",
             "  상황8", "  상황9", "  상황10", "  상황11", "  상황12", "  상황13", "  상황14"};
 
         JList SituL = new JList(Situ);
@@ -312,6 +312,17 @@ public class HDDUSER extends JFrame {
                         NextA.addActionListener(new ActionListener() {
 
                             public void actionPerformed(ActionEvent e) {
+                                
+                                JComboBox CYF = (JComboBox) e.getSource();
+                                int indexCYF = CYF.getSelectedIndex();
+                                
+                                JComboBox CYL = (JComboBox) e.getSource();
+                                int indexCYL = CYL.getSelectedIndex();
+                                
+                                
+                                
+                                
+                                
 
                                 contentA.add(CauseA);
                                 contentA.add(Cause);
