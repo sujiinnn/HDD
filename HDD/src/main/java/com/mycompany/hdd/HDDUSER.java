@@ -72,25 +72,62 @@ public class HDDUSER extends JFrame {
         UseButton.setFont(new Font("휴먼둥근헤드라인", Font.PLAIN, 18));
 
         //----------------------------------------------------------- 버튼추가
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        String[] LocaS = {"강서구", "금정구", "기장군", "동구", "동래구", "부산진구", "서구",
+            "연제구", "해운대구", "북구", "사상구", "사하구", "영도구", "남구", "수영구", "중구", "부산 전체"};
+
+        String[] YearFirst = {"2016년", "2017년", "2018년", "2019년"};
+
+        String[] YearLast = {"2016년", "2017년", "2018년", "2019년"};
+
+        JLabel LocationA = new JLabel(" 지역 ");
+        LocationA.setBounds(0, 20, 100, 30);
+        LocationA.setFont(new Font("HY헤드라인M", Font.PLAIN, 18));
+
+        JComboBox Loca = new JComboBox(LocaS);
+        Loca.setBounds(50, 20, 100, 30);
+        Loca.setBackground(Color.white);
+        Loca.setFont(new Font("HY견고딕M", Font.PLAIN, 18));
+
+        JLabel YearA = new JLabel(" 년도 ");
+        YearA.setBounds(160, 20, 100, 30);
+        YearA.setFont(new Font("HY헤드라인M", Font.PLAIN, 18));
+
+        JComboBox YearF = new JComboBox(YearFirst);
+        YearF.setBounds(210, 20, 90, 30);
+        YearF.setBackground(Color.white);
+        YearF.setFont(new Font("HY견고딕M", Font.PLAIN, 18));
+
+        JLabel WaveA = new JLabel(" ~ ");
+        WaveA.setBounds(300, 20, 100, 30);
+        WaveA.setFont(new Font("HY헤드라인M", Font.PLAIN, 18));
+
+        JComboBox YearL = new JComboBox(YearLast);
+        YearL.setBounds(330, 20, 90, 30);
+        YearL.setBackground(Color.white);
+        YearL.setFont(new Font("HY견고딕M", Font.PLAIN, 18));
+
+        JButton NextA = new JButton(" 다음 ");
+        NextA.setBounds(430, 20, 80, 30);
+        NextA.setBackground(Color.white);
+        NextA.setFont(new Font("맑은 고딕", Font.BOLD, 13));
+
+        JLabel CauseA = new JLabel(" 요인 ");
+        CauseA.setBounds(530, 20, 100, 30);
+        CauseA.setFont(new Font("HY헤드라인M", Font.PLAIN, 18));
+
+        JTextField Cause = new JTextField();
+        Cause.setBounds(580, 20, 100, 30);
+        Cause.setBackground(Color.white);
+        Cause.setFont(new Font("HY견고딕M", Font.PLAIN, 18));
+
+        JButton SearchA = new JButton(" 검색 ");
+        SearchA.setBounds(700, 20, 80, 30);
+        SearchA.setBackground(Color.white);
+        SearchA.setFont(new Font("맑은 고딕", Font.BOLD, 13));
+
+        contentA.add(LocationA);
+        contentA.add(Loca);
+
         //----------------------------------------------------------- 사건/사고
         String s1 = "<html><div width='115px' align='center'>";
         String s2 = "</div></html>";
@@ -200,56 +237,42 @@ public class HDDUSER extends JFrame {
         NextM2.setBounds(120, 480, 100, 30);
         NextM2.setBackground(new Color(248, 248, 248));
         NextM2.setFont(new Font("맑은 고딕", Font.BOLD, 13));
-        
+
         Rg.add(Situation);
         Rg.add(Medical);
 
         contentM.add(Situation);
         contentM.add(Medical);
-        
+
         //--------------------------------------------------------- 대처법
-        
         String[] UseS = {"  사용법1", "  사용법2", "  사용법3", "  사용법4", "  사용법5", "  사용법6", "  사용법7",
             "  사용법8", "  사용법9", "  사용법10", "  사용법11", "  사용법12", "  사용법13", "  사용법14"};
-        
+
         JLabel UT1 = new JLabel(" 원하시는 안전도구를 ");
         JLabel UT2 = new JLabel(" 선택해주세요 ! ");
-        
+
         UT1.setBounds(20, 30, 300, 30);
         UT1.setFont(new Font("HY헤드라인M", Font.PLAIN, 18));
-        
+
         UT2.setBounds(50, 60, 300, 30);
         UT2.setFont(new Font("HY헤드라인M", Font.PLAIN, 18));
-        
-        
+
         JList UseL = new JList(UseS);
         UseL.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         UseL.setBackground(new Color(242, 250, 237));
         UseL.setBounds(20, 110, 200, 350);
         UseL.setFont(new Font("HY헤드라인M", Font.PLAIN, 18));
-        
+
         JButton NextU = new JButton("다음");
         NextM2.setBounds(120, 480, 100, 30);
         NextM2.setBackground(new Color(248, 248, 248));
         NextM2.setFont(new Font("맑은 고딕", Font.BOLD, 13));
-        
-        
+
         contentU.add(UseL);
         contentU.add(UT1);
         contentU.add(UT2);
         contentU.add(NextU);
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+
         //---------------------------------------------------------- 사용법
         AccidentButton.addActionListener(new ActionListener() {
 
@@ -259,6 +282,64 @@ public class HDDUSER extends JFrame {
                 contentM.setVisible(false);
                 contentU.setVisible(false);
                 contentA.setVisible(true);
+
+                Loca.addActionListener(new ActionListener() {
+
+                    public void actionPerformed(ActionEvent e) {
+
+                        contentA.add(YearA);
+                        contentA.add(YearF);
+                        contentA.add(WaveA);
+                        contentA.add(YearL);
+
+                        contentA.add(NextA);
+
+                        YearA.revalidate();
+                        YearA.repaint();
+
+                        YearF.revalidate();
+                        YearF.repaint();
+
+                        WaveA.revalidate();
+                        WaveA.repaint();
+
+                        YearL.revalidate();
+                        YearL.repaint();
+
+                        NextA.revalidate();
+                        NextA.repaint();
+
+                        NextA.addActionListener(new ActionListener() {
+
+                            public void actionPerformed(ActionEvent e) {
+
+                                contentA.add(CauseA);
+                                contentA.add(Cause);
+                                contentA.add(SearchA);
+
+                                CauseA.revalidate();
+                                CauseA.repaint();
+
+                                Cause.revalidate();
+                                Cause.repaint();
+
+                                SearchA.revalidate();
+                                SearchA.repaint();
+
+                            }
+                        });
+
+                        JComboBox CL = (JComboBox) e.getSource();
+                        int index = CL.getSelectedIndex();
+
+                    }
+                });
+
+                LocationA.revalidate();
+                LocationA.repaint();
+
+                Loca.revalidate();
+                Loca.repaint();
 
             }
 
@@ -393,9 +474,9 @@ public class HDDUSER extends JFrame {
                 });
 
                 Medical.addItemListener(new ItemListener() {
-                                      
-                    public void itemStateChanged(ItemEvent e) {                        
-                        
+
+                    public void itemStateChanged(ItemEvent e) {
+
                         if (e.getStateChange() == ItemEvent.DESELECTED) {
                             return;
                         }
@@ -428,10 +509,10 @@ public class HDDUSER extends JFrame {
 
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        
+
                         // 상황 대처법 객체 생성 후 실행
                         DaeChu daechu = new DaeChu(e, SituL);
-                        
+
                         contentM.add(daechu.scroll());
                         contentM.add(daechu.run());
                     }
@@ -442,13 +523,13 @@ public class HDDUSER extends JFrame {
 
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        
+
                         Medical medical = new Medical(e, MediL);
                         medical.run();
                     }
 
                 });
-                
+
                 Situation.revalidate();
                 Medical.repaint();
 
@@ -464,23 +545,23 @@ public class HDDUSER extends JFrame {
                 contentS.setVisible(false);
                 contentM.setVisible(false);
                 contentU.setVisible(true);
-                
+
                 UseL.revalidate();
                 UseL.repaint();
-                
+
                 UT1.revalidate();
                 UT1.repaint();
-                
+
                 UT2.revalidate();
                 UT2.repaint();
-                
+
                 NextU.revalidate();
                 NextU.repaint();
 
             }
 
         });
-        
+
         //-------------------------------------------------------- 사용법 액션
         ImageIcon Logo = new ImageIcon("src\\main\\java\\com\\mycompany\\hdd\\LogoSmall.PNG");
         JLabel HDDLogo = new JLabel(Logo);
@@ -501,6 +582,11 @@ public class HDDUSER extends JFrame {
                 setVisible(false);
             }
         });
+
+        contentA.setVisible(false);
+        contentS.setVisible(false);
+        contentM.setVisible(false);
+        contentU.setVisible(false);
 
         userScreen.add(AccidentButton);
         userScreen.add(ShelterButton);
