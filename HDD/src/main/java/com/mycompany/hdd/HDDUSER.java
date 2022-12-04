@@ -291,7 +291,7 @@ public class HDDUSER extends JFrame {
                         contentA.add(YearF);
                         contentA.add(WaveA);
                         contentA.add(YearL);
-
+                        
                         contentA.add(NextA);
 
                         YearA.revalidate();
