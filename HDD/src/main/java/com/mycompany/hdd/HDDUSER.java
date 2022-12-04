@@ -210,7 +210,7 @@ public class HDDUSER extends JFrame {
         Medical.setBounds(20, 70, 200, 30);
         Medical.setFont(new Font("HY헤드라인M", Font.PLAIN, 15));
 
-        String[] Situ = {"  화재", "  지진", "  해일", "  상황4", "  상황5", "  상황6", "  상황7",
+        String[] Situ = {"  화재", "  지진", "  해일", "  침수", "  지진해일", "  태풍", "  상황7",
             "  상황8", "  상황9", "  상황10", "  상황11", "  상황12", "  상황13", "  상황14"};
 
         JList SituL = new JList(Situ);
@@ -245,7 +245,7 @@ public class HDDUSER extends JFrame {
         contentM.add(Medical);
 
         //--------------------------------------------------------- 대처법
-        String[] UseS = {"  사용법1", "  사용법2", "  사용법3", "  사용법4", "  사용법5", "  사용법6", "  사용법7",
+        String[] UseS = {"  소화기", "  전기", "  사용법3", "  사용법4", "  사용법5", "  사용법6", "  사용법7",
             "  사용법8", "  사용법9", "  사용법10", "  사용법11", "  사용법12", "  사용법13", "  사용법14"};
 
         JLabel UT1 = new JLabel(" 원하시는 안전도구를 ");
@@ -533,7 +533,9 @@ public class HDDUSER extends JFrame {
                     public void actionPerformed(ActionEvent e) {
 
                         Medical medical = new Medical(e, MediL);
-                        medical.run();
+                        contentM.add(medical.scroll());
+                        contentM.add(medical.Imagerun());
+                        contentM.add(medical.Textrun());
                     }
 
                 });
@@ -559,14 +561,9 @@ public class HDDUSER extends JFrame {
                     @Override
                     public void actionPerformed(ActionEvent e) {
 
-                        if (UseL.getSelectedIndex() == -1) {
-
-                            String UseER = s1 + " 안전도구 종류를 선택해주세요. " + s2;
-
-                            JLabel UER = new JLabel(UseER);
-                            JOptionPane.showMessageDialog(null, UER, "사용방법 선택 오류", JOptionPane.WARNING_MESSAGE);
-
-                        }
+                        UseHow useH = new UseHow(e, UseL);
+                        contentU.add(useH.scroll());
+                        contentU.add(useH.run());
 
                     }
                 });
