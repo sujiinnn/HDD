@@ -54,7 +54,8 @@ public class HDDMANAGER extends JFrame {
         BackButton.setSize(80, 80);
         BackButton.setLocation(120, 365);
         BackButton.setBackground(Color.white);
-
+        
+        
         BackButton.addActionListener(new ActionListener() {
 
             @Override
