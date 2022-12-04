@@ -3,7 +3,6 @@ package com.mycompany.hdd;
 import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
-import lombok.*;
 
 import java.io.BufferedReader;
 import java.io.FileWriter;
