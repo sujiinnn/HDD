@@ -102,9 +102,126 @@ public class UseHow {
                 }
 
                 break;
+                
+                 case "완강기":
+                     try {
+                    SaYongImage = ImageIO.read(new File("src\\main\\java\\com\\mycompany\\hdd\\Image\\descending life line.png"));
+                    // 이미지 크기 조절
+                    ImageIcon icon = new ImageIcon(SaYongImage);
+
+                    Image img = icon.getImage();
+                    Image changeImg = img.getScaledInstance(550, 510, Image.SCALE_SMOOTH); // JLabel 사이즈에 맞춰서 이미지를 변경
+                    ImageIcon changeIcon = new ImageIcon(changeImg);
+
+                    label.setIcon(changeIcon);
+
+                    return label;
+                } catch (IOException ex) {
+                    Logger.getLogger(UseHow.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                break;
+                
+                case "비상탈출망치":
+                    try {
+                    SaYongImage = ImageIO.read(new File("src\\main\\java\\com\\mycompany\\hdd\\Image\\emergency escape hammer.jpg"));
+                    // 이미지 크기 조절
+                    
+                    ImageIcon icon = new ImageIcon(SaYongImage);
+
+                    Image img = icon.getImage();
+                    Image changeImg = img.getScaledInstance(550, 510, Image.SCALE_SMOOTH); // JLabel 사이즈에 맞춰서 이미지를 변경
+                    ImageIcon changeIcon = new ImageIcon(changeImg);
+
+                    label.setIcon(changeIcon);
+
+                    return label;
+                } catch (IOException ex) {
+                    Logger.getLogger(UseHow.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                break;
+                
+                case "자동심장충격기":
+                    try {
+                    SaYongImage = ImageIO.read(new File("src\\main\\java\\com\\mycompany\\hdd\\Image\\AED.png"));
+                    // 이미지 크기 조절
+                    
+                    ImageIcon icon = new ImageIcon(SaYongImage);
+
+                    Image img = icon.getImage();
+                    Image changeImg = img.getScaledInstance(550, 510, Image.SCALE_SMOOTH); // JLabel 사이즈에 맞춰서 이미지를 변경
+                    ImageIcon changeIcon = new ImageIcon(changeImg);
+
+                    label.setIcon(changeIcon);
+
+                    return label;
+                } catch (IOException ex) {
+                    Logger.getLogger(UseHow.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                break;
+                
+                case "방독면":
+                    try {
+                    SaYongImage = ImageIO.read(new File("src\\main\\java\\com\\mycompany\\hdd\\Image\\gas mask.png"));
+                    // 이미지 크기 조절
+                    
+                    ImageIcon icon = new ImageIcon(SaYongImage);
+
+                    Image img = icon.getImage();
+                    Image changeImg = img.getScaledInstance(550, 510, Image.SCALE_SMOOTH); // JLabel 사이즈에 맞춰서 이미지를 변경
+                    ImageIcon changeIcon = new ImageIcon(changeImg);
+
+                    label.setIcon(changeIcon);
+
+                    return label;
+                } catch (IOException ex) {
+                    Logger.getLogger(UseHow.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                break;
+                
+                case "지혈대":
+                     try {
+                    SaYongImage = ImageIO.read(new File("src\\main\\java\\com\\mycompany\\hdd\\Image\\blood stop.png"));
+                    // 이미지 크기 조절
+                    ImageIcon icon = new ImageIcon(SaYongImage);
+
+                    Image img = icon.getImage();
+                    Image changeImg = img.getScaledInstance(550, 510, Image.SCALE_SMOOTH); // JLabel 사이즈에 맞춰서 이미지를 변경
+                    ImageIcon changeIcon = new ImageIcon(changeImg);
+
+                    label.setIcon(changeIcon);
+
+                    return label;
+                } catch (IOException ex) {
+                    Logger.getLogger(UseHow.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
+                
+                case "구명조끼":
+                     try {
+                    SaYongImage = ImageIO.read(new File("src\\main\\java\\com\\mycompany\\hdd\\Image\\life jacket.png"));
+                    // 이미지 크기 조절
+                    ImageIcon icon = new ImageIcon(SaYongImage);
+
+                    Image img = icon.getImage();
+                    Image changeImg = img.getScaledInstance(550, 510, Image.SCALE_SMOOTH); // JLabel 사이즈에 맞춰서 이미지를 변경
+                    ImageIcon changeIcon = new ImageIcon(changeImg);
+
+                    label.setIcon(changeIcon);
+
+                    return label;
+                } catch (IOException ex) {
+                    Logger.getLogger(UseHow.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
             }
 
-        }
+            }
+
+        
 
         return label;
     }

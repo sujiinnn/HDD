@@ -210,8 +210,8 @@ public class HDDUSER extends JFrame {
         Medical.setBounds(20, 70, 200, 30);
         Medical.setFont(new Font("HY헤드라인M", Font.PLAIN, 15));
 
-        String[] Situ = {"  화재", "  지진", "  해일", "  침수", "  지진해일", "  태풍", "  상황7",
-            "  상황8", "  상황9", "  상황10", "  상황11", "  상황12", "  상황13", "  상황14"};
+        String[] Situ = {"  화재", "  지진", "  해일", "  침수", "  지진해일", "  태풍", "  산불",
+            "  폭발", "  정보통신사고", "  원전사고", "  상황11", "  상황12", "  상황13", "  상황14"};
 
         JList SituL = new JList(Situ);
         SituL.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -219,8 +219,9 @@ public class HDDUSER extends JFrame {
         SituL.setBounds(20, 120, 200, 350);
         SituL.setFont(new Font("HY헤드라인M", Font.PLAIN, 18));
 
-        String[] Medi = {"  심폐소생술", "  화상", "  벌쏘임", "  뱀물림", "  붉은불개미", "  상황6", "  상황7",
-            "  상황8", "  상황9", "  상황10", "  상황11", "  상황12", "  상황13", "  상황14"};
+        String[] Medi = {"  심폐소생술", "  화상", "  벌쏘임", "  식중독", "  붉은불개미", "  승강기사고", "  해파리피해",
+            "  하임리히법", "  발목염좌", "  제염방법", "  상황11", "  상황12", "  상황13", "  상황14"};
+
 
         JList MediL = new JList(Medi);
         MediL.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -245,8 +246,8 @@ public class HDDUSER extends JFrame {
         contentM.add(Medical);
 
         //--------------------------------------------------------- 대처법
-        String[] UseS = {"  소화기", "  전기", "  사용법3", "  사용법4", "  사용법5", "  사용법6", "  사용법7",
-            "  사용법8", "  사용법9", "  사용법10", "  사용법11", "  사용법12", "  사용법13", "  사용법14"};
+        String[] UseS = {"  소화기", "  전기", "  완강기", "  비상탈출망치", "  자동심장충격기", "  방독면", "  지혈대",
+            "  구명조끼", "  사용법9", "  사용법10", "  사용법11", "  사용법12", "  사용법13", "  사용법14"};
 
         JLabel UT1 = new JLabel(" 원하시는 안전도구를 ");
         JLabel UT2 = new JLabel(" 선택해주세요 ! ");
@@ -291,7 +292,7 @@ public class HDDUSER extends JFrame {
                         contentA.add(YearF);
                         contentA.add(WaveA);
                         contentA.add(YearL);
-                        
+
                         contentA.add(NextA);
 
                         YearA.revalidate();
@@ -526,13 +527,19 @@ public class HDDUSER extends JFrame {
                     }
                 });
 
-                // 응급의료 상황 아이템을 선택하지 않았을 경우에 -1 반환
                 NextM2.addActionListener(new ActionListener() {
 
                     @Override
                     public void actionPerformed(ActionEvent e) {
 
                         Medical medical = new Medical(e, MediL);
+
+                        medical.txtArea.setVisible(false);
+                        medical.label.setVisible(false);
+                        medical.scroll().setVisible(false);
+
+                        contentM.revalidate();
+
                         contentM.add(medical.scroll());
                         contentM.add(medical.Imagerun());
                         contentM.add(medical.Textrun());
@@ -595,39 +602,38 @@ public class HDDUSER extends JFrame {
         BackButton.setSize(80, 80);
         BackButton.setLocation(120, 445);
         BackButton.setBackground(Color.white);
-        
+
         ImageIcon MainLogo = new ImageIcon("src\\main\\java\\com\\mycompany\\hdd\\LogoMain.png");
         JLabel MLogo = new JLabel(MainLogo);
-        MLogo.setBounds(250,100,300,300);
-        
+        MLogo.setBounds(250, 100, 300, 300);
+
         JLabel T1 = new JLabel(" 안녕하세요. ");
         T1.setBounds(720, 170, 200, 30);
         T1.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
-        
+
         JLabel T2 = new JLabel(" 저희 '호다닥 : 부산 재난 안전 관리 시스템' 은 ");
         T2.setBounds(580, 200, 400, 30);
         T2.setFont(new Font("맑은 고딕", Font.BOLD, 18));
-        T2.setForeground(new Color(255,72,72));
-        
+        T2.setForeground(new Color(255, 72, 72));
+
         JLabel T3 = new JLabel(" 부산시에 일어나는 다양한 사건/사고와 ");
         T3.setBounds(630, 230, 400, 30);
         T3.setFont(new Font("맑은 고딕", Font.BOLD, 15));
         //T3.setForeground(new Color(137,106,183));
-        
+
         JLabel T4 = new JLabel(" 긴급 상황 시에 유용하게 쓰이는 정보들을 ");
         T4.setBounds(630, 260, 400, 30);
         T4.setFont(new Font("맑은 고딕", Font.BOLD, 15));
         //T4.setForeground(new Color(137,106,183));
-        
+
         JLabel T5 = new JLabel(" 한 눈에 알아볼 수 있게 만든 ");
         T5.setBounds(670, 290, 400, 30);
         T5.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
-        
+
         JLabel T6 = new JLabel(" 재난 정보 제공 프로그램입니다. ");
         T6.setBounds(630, 320, 400, 30);
         T6.setFont(new Font("맑은 고딕", Font.BOLD, 18));
-        T6.setForeground(new Color(67,117,219));
-        
+        T6.setForeground(new Color(67, 117, 219));
 
         BackButton.addActionListener(new ActionListener() {
 
@@ -643,7 +649,6 @@ public class HDDUSER extends JFrame {
         contentM.setVisible(false);
         contentU.setVisible(false);
 
-        
         userScreen.add(MLogo);
         userScreen.add(T1);
         userScreen.add(T2);
@@ -651,15 +656,13 @@ public class HDDUSER extends JFrame {
         userScreen.add(T4);
         userScreen.add(T5);
         userScreen.add(T6);
-        
-        
+
         userScreen.add(AccidentButton);
         userScreen.add(ShelterButton);
         userScreen.add(MethodButton);
         userScreen.add(UseButton);
         userScreen.add(HDDLogo);
         userScreen.add(BackButton);
-        
 
         setVisible(true);
 

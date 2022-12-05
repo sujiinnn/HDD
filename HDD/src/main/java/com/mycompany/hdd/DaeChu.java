@@ -45,7 +45,7 @@ public class DaeChu {
         txtArea.setBounds(230, 20, 556, 515);
         txtArea.setEditable(false); // 입력 제한
         txtArea.setBackground(Color.white);
-        txtArea.setFont(new Font("궁서", Font.BOLD, 14));
+        txtArea.setFont(new Font("맑은 고딕", Font.BOLD, 12));
         txtArea.setLineWrap(true);
         txtArea.setWrapStyleWord(true);
 
@@ -54,7 +54,7 @@ public class DaeChu {
 
     public JScrollPane scroll() {
         scrollPane.setBounds(750, 20, 20, 510);
-        //scrollPane.getVerticalScrollBar().setValue(scrollPane.getVerticalScrollBar().getMaximum());
+ 
         return scrollPane;
     }
 
@@ -78,68 +78,96 @@ public class DaeChu {
 
                     // 화재 관련 내용 크롤링하여 패널에 추가하기. ex) 기존에 테스트했던 코드들 복사 붙여넣기 이후 수정 필요한 부분만 수정해서 사용하기
                     try {
-                        txtArea.setText(null);
+                    txtArea.setText(null);
 
-                        String url = "https://www.safekorea.go.kr/idsiSFK/neo/sfk/cs/contents/prevent/SDIJKM5116.html?menuSeq=127";
-                        Crawler crawler = new Crawler(url);
+                    String url = "https://www.safekorea.go.kr/idsiSFK/neo/sfk/cs/contents/prevent/SDIJKM5116.html?menuSeq=127";
+                    Crawler crawler = new Crawler(url);
 
-                        crawler.title = crawler.doc.select("h4.title_02"); // 제목
-                        crawler.subtitle = crawler.doc.select("h4.title_03"); // 소제목
-                        crawler.contents = crawler.doc.select("strong.level4_title"); // 내용
+                    crawler.title = crawler.doc.select("h4.title_02"); // 제목
+                    crawler.subtitle = crawler.doc.select("h4.title_03"); // 소제목
+                    crawler.contents = crawler.doc.select("strong.level4_title"); // 내용
 
-                        int index = 0; // 두번째 for문 인덱스 체크
-                        for (int i = 2; i < crawler.title.size() - 3; i++) { // i가 2부터 시작하는 이유는 "화재가 울릴 때" 부터 출력, size -3하는 이유는 "불을 발견했을 때"까지 출력하기 위함
+                    int index = 0; // 두번째 for문 인덱스 체크
+                    for (int i = 2; i < crawler.title.size() - 3; i++) { // i가 2부터 시작하는 이유는 "화재가 울릴 때" 부터 출력, size -3하는 이유는 "불을 발견했을 때"까지 출력하기 위함
 
-                            txtArea.append("[" + crawler.title.get(i).text() + "]\n");
+                        txtArea.append("[" + crawler.title.get(i).text() + "]\n");
 
-                            for (int j = index; j < crawler.subtitle.size() - 3; j++) {
-                                txtArea.append(crawler.subtitle.get(j).text() + "\n");
-                                if (j == 4) {
-                                    index++;
-                                    break;
-                                }
-                                for (String result : crawler.contents.get(j).text().split("\\.")) {
-                                    txtArea.append(result + "\n");
-                                }
-                                txtArea.append("\n");
+                        for (int j = index; j < crawler.subtitle.size() - 3; j++) {
+                            txtArea.append(crawler.subtitle.get(j).text() + "\n");
+                            if (j == 4) {
                                 index++;
+                                break;
                             }
-
-                            txtArea.append("\n\n");
+                            for (String result : crawler.contents.get(j).text().split("\\.")) {
+                                txtArea.append(result + "\n");
+                            }
+                            txtArea.append("\n");
+                            index++;
                         }
 
-                        return txtArea;
-
-                    } catch (IOException ex) {
-                        Logger.getLogger(DaeChu.class.getName()).log(Level.SEVERE, null, ex);
+                        txtArea.append("\n\n");
                     }
-                    break;
+
+                    return txtArea;
+
+                } catch (IOException ex) {
+                    Logger.getLogger(DaeChu.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
                 case "지진":
                     
                     // 지진 관련 내용 크롤링하여 패널에 추가하기.
                     try {
-                        txtArea.setText(null);
+                    txtArea.setText(null);
 
-                        String url = "https://www.safekorea.go.kr/idsiSFK/neo/sfk/cs/contents/prevent/prevent09.html?menuSeq=126";
-                        Crawler crawler = new Crawler(url);
+                    String url = "https://www.safekorea.go.kr/idsiSFK/neo/sfk/cs/contents/prevent/prevent09.html?menuSeq=126";
+                    Crawler crawler = new Crawler(url);
 
-                        crawler.title = crawler.doc.select("ul.tablist li"); // 제목
-                        crawler.contents = crawler.doc.select("div.detail"); // 내용
+                    crawler.title = crawler.doc.select("ul.tablist li"); // 제목
+                    crawler.contents = crawler.doc.select("div.detail"); // 내용
 
-                        for (int i = 0; i < crawler.title.size(); i++) {
-                            txtArea.append(crawler.title.get(i).text() + "\n");
+                    for (int i = 0; i < crawler.title.size(); i++) {
+                        txtArea.append(crawler.title.get(i).text() + "\n");
 
-                            for (String result : crawler.contents.get(i).text().split("\\.")) {
-                                txtArea.append(result + "\n");
-                            }
-
+                        for (String result : crawler.contents.get(i).text().split("\\.")) {
+                            txtArea.append(result + "\n");
                         }
-                        return txtArea;
-                    } catch (IOException ex) {
-                        Logger.getLogger(DaeChu.class.getName()).log(Level.SEVERE, null, ex);
+
                     }
-                    break;
+                    return txtArea;
+                } catch (IOException ex) {
+                    Logger.getLogger(DaeChu.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
                 case "해일":
+
+                    // 해일 관련 내용 크롤링하여 패널에 추가하기.
+                    try {
+                    // 버튼 클릭할 때마다 맨 처음에 화면 지우기
+                    txtArea.setText(null);
+
+                    // 크롤링 시작
+                    String url = "https://www.safekorea.go.kr/idsiSFK/neo/sfk/cs/contents/prevent/prevent10.html?menuSeq=126";
+                    Crawler crawler = new Crawler(url);
+                    crawler.title = crawler.doc.select("h3.title_02");
+                    crawler.contents = crawler.doc.select("p");
+
+                    for (int i = 0; i < crawler.title.size(); i++) {
+                        txtArea.append("[" + crawler.title.get(i).text() + "]\n");
+
+                        for (String result : crawler.contents.text().split("\\.")) {
+                            txtArea.append(result + "\n");
+                        }
+                        txtArea.append("\n");
+                    }
+                    return txtArea;
+
+                } catch (IOException ex) {
+                    Logger.getLogger(DaeChu.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
+                case "침수":
+                    System.out.println(SituL.getSelectedValue().toString().trim() + "입니다.");
 
                     // 해일 관련 내용 크롤링하여 패널에 추가하기.
                     try {
@@ -147,18 +175,60 @@ public class DaeChu {
                         txtArea.setText(null);
 
                         // 크롤링 시작
-                        String url = "https://www.safekorea.go.kr/idsiSFK/neo/sfk/cs/contents/prevent/prevent10.html?menuSeq=126";
+                        String url = "https://www.safekorea.go.kr/idsiSFK/neo/sfk/cs/contents/prevent/prevent21.html?menuSeq=126";
                         Crawler crawler = new Crawler(url);
-                        crawler.title = crawler.doc.select("h3.title_02");
-                        crawler.contents = crawler.doc.select("p");
+
+                        crawler.title = crawler.doc.select("h4.title_02");
+                        crawler.subtitle = crawler.doc.select("strong.level4_title");
+                        crawler.contents = crawler.doc.select("div.know_how_w");
+                        crawler.contents2 = crawler.doc.select("ul.contextIndent_twoDepList");
 
                         for (int i = 0; i < crawler.title.size(); i++) {
-                            txtArea.append("[" + crawler.title.get(i).text() + "]\n");
+                            if (i == 0) {
+                                txtArea.append("[" + crawler.title.get(i).text() + "]\n");
+                                for (String result : crawler.contents.get(i).text().split("\\.")) {
+                                    txtArea.append(result + "\n");
 
-                            for (String result : crawler.contents.text().split("\\.")) {
-                                txtArea.append(result + "\n");
+                                }
+                            }
+                            if (i == 1) {
+                                txtArea.append("[" + crawler.title.get(i).text() + "]\n");
+
+                                for (int j = 0; j < crawler.subtitle.size() - 1; j++) {
+                                    txtArea.append(crawler.subtitle.get(j).text() + "\n");
+                                    for (String result : crawler.contents2.get(j + (j + 1)).text().split("\\.")) {
+                                        txtArea.append(result + "\n");
+                                    }
+
+                                    txtArea.append("\n");
+                                }
+
                             }
                             txtArea.append("\n");
+
+                        }
+                        return txtArea;
+                    } catch (IOException ex) {
+                        Logger.getLogger(DaeChu.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    break;
+                    
+                case "지진해일":
+                    System.out.println(SituL.getSelectedValue().toString().trim() + "입니다.");
+
+                    // 해일 관련 내용 크롤링하여 패널에 추가하기.
+                    try {
+                        // 버튼 클릭할 때마다 맨 처음에 화면 지우기
+                        txtArea.setText(null);
+
+                        // 크롤링 시작
+                        String url = "https://www.safekorea.go.kr/idsiSFK/neo/sfk/cs/contents/prevent/prevent16.html?menuSeq=126";
+                        Crawler crawler = new Crawler(url);
+
+                        crawler.contents = crawler.doc.select("div.preventTop_boxWrap");
+
+                        for (String result : crawler.contents.get(0).text().split("\\.")) {
+                            txtArea.append(result + "\n");
                         }
                         return txtArea;
 
@@ -166,102 +236,161 @@ public class DaeChu {
                         Logger.getLogger(DaeChu.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     break;
-                case "침수":
-                    System.out.println(SituL.getSelectedValue().toString().trim() + "입니다.");
-
-                    // 해일 관련 내용 크롤링하여 패널에 추가하기.
-                    try {
-                    // 버튼 클릭할 때마다 맨 처음에 화면 지우기
-                    txtArea.setText(null);
-
-                    // 크롤링 시작
-                    String url = "https://www.safekorea.go.kr/idsiSFK/neo/sfk/cs/contents/prevent/prevent21.html?menuSeq=126";
-                    Crawler crawler = new Crawler(url);
-
-                    crawler.title = crawler.doc.select("h4.title_02");
-                    crawler.subtitle = crawler.doc.select("strong.level4_title");
-                    crawler.contents = crawler.doc.select("div.know_how_w");
-                    crawler.contents2 = crawler.doc.select("ul.contextIndent_twoDepList");
-
-                    for (int i = 0; i < crawler.title.size(); i++) {
-                        if (i == 0) {
-                            txtArea.append("[" + crawler.title.get(i).text() + "]\n");
-                            for (String result : crawler.contents.get(i).text().split("\\.")) {
-                                txtArea.append(result + "\n");
-
-                            }
-                        }
-                        if (i == 1) {
-                            txtArea.append("[" + crawler.title.get(i).text() + "]\n");
-
-                            for (int j = 0; j < crawler.subtitle.size() - 1; j++) {
-                                txtArea.append(crawler.subtitle.get(j).text() + "\n");
-                                for (String result : crawler.contents2.get(j + (j + 1)).text().split("\\.")) {
-                                    txtArea.append(result + "\n");
-                                }
-
-                                txtArea.append("\n");
-                            }
-
-                        }
-                        txtArea.append("\n");
-
-                    }
-                    return txtArea;
-                } catch (IOException ex) {
-                    Logger.getLogger(DaeChu.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                    break;
-                case "지진해일":
-                    System.out.println(SituL.getSelectedValue().toString().trim() + "입니다.");
-
-                    // 해일 관련 내용 크롤링하여 패널에 추가하기.
-                    try {
-                    // 버튼 클릭할 때마다 맨 처음에 화면 지우기
-                    txtArea.setText(null);
-
-                    // 크롤링 시작
-                    String url = "https://www.safekorea.go.kr/idsiSFK/neo/sfk/cs/contents/prevent/prevent16.html?menuSeq=126";
-                    Crawler crawler = new Crawler(url);
-
-                    crawler.contents = crawler.doc.select("div.preventTop_boxWrap");
-
-                    for (String result : crawler.contents.get(0).text().split("\\.")) {
-                        txtArea.append(result + "\n");
-                    }
-                    return txtArea;
-
-                } catch (IOException ex) {
-                    Logger.getLogger(DaeChu.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                    break;
+                    
                 case "태풍":
                     System.out.println(SituL.getSelectedValue().toString().trim() + "입니다.");
 
                     // 해일 관련 내용 크롤링하여 패널에 추가하기.
                     try {
-                    // 버튼 클릭할 때마다 맨 처음에 화면 지우기
+                        // 버튼 클릭할 때마다 맨 처음에 화면 지우기
+                        txtArea.setText(null);
+
+                        // 크롤링 시작
+                        String url = "https://www.safekorea.go.kr/idsiSFK/neo/sfk/cs/contents/prevent/prevent02.html?menuSeq=126";
+                        Crawler crawler = new Crawler(url);
+
+                        crawler.title = crawler.doc.select("h4.title_02");
+                        crawler.contents = crawler.doc.select("strong.level4_title");
+
+                        txtArea.append("[" + crawler.title.text() + "]\n");
+
+                        for (int i = 11; i < crawler.contents.size(); i++) {
+                            for (String result : crawler.contents.get(i).text().split("\\.")) {
+                                txtArea.append(result + "\n");
+                            }
+                        }
+                        return txtArea;
+                    } catch (IOException ex) {
+                        Logger.getLogger(DaeChu.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    break;
+
+                case "산불":
+                    try {
+
                     txtArea.setText(null);
 
-                    // 크롤링 시작
-                    String url = "https://www.safekorea.go.kr/idsiSFK/neo/sfk/cs/contents/prevent/prevent02.html?menuSeq=126";
+                    String url = "https://www.safekorea.go.kr/idsiSFK/neo/sfk/cs/contents/prevent/SDIJKM5117.html?menuSeq=127";
                     Crawler crawler = new Crawler(url);
-                    
-                    crawler.title = crawler.doc.select("h4.title_02");
-                    crawler.contents = crawler.doc.select("strong.level4_title");
 
-                    txtArea.append("[" + crawler.title.text() + "]\n");
-                    
-                    for(int i = 11; i < crawler.contents.size(); i++){
-                        for(String result : crawler.contents.get(i).text().split("\\.")){
+                    crawler.title = crawler.doc.select("p.title_03");
+                    crawler.contents = crawler.doc.select("p.dash_bulTxt_txtIndent");
+
+                    txtArea.append("[" + crawler.title.get(0).text() + "]\n");
+                    for (int k = 0; k < crawler.contents.size(); k++) {
+                        for (String result : crawler.contents.get(k).text().split("\\.")) {
                             txtArea.append(result + "\n");
                         }
+                    }
+
+                    //System.out.println(crawler.subtitle);
+                    //System.out.println(crawler.contents);
+                    return txtArea;
+                } catch (IOException ex) {
+                    Logger.getLogger(DaeChu.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
+
+                case "폭발":
+                    try {
+
+                    txtArea.setText(null);
+
+                    String url = "https://www.safekorea.go.kr/idsiSFK/neo/sfk/cs/contents/prevent/SDIJKM5119.html?menuSeq=127";
+                    Crawler crawler = new Crawler(url);
+
+                    crawler.title = crawler.doc.select("h3.title_02");
+                    crawler.contents = crawler.doc.select("p");
+
+                    txtArea.append("[" + crawler.title.get(0).text() + "]\n");
+                    for (int i = 0; i < crawler.contents.size() - 2; i++) {
+                        for (String result : crawler.contents.get(i).text().split("\\.")) {
+                            txtArea.append(result + "\n");
+                        }
+                        txtArea.append("\n");
+                    }
+
+                    return txtArea;
+                } catch (IOException ex) {
+                    Logger.getLogger(DaeChu.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
+
+                case "정보통신사고":
+                    try {
+
+                    txtArea.setText(null);
+
+                    String url = "https://www.safekorea.go.kr/idsiSFK/neo/sfk/cs/contents/prevent/SDIJKM5512.html?menuSeq=127";
+                    Crawler crawler = new Crawler(url);
+
+                    crawler.title = crawler.doc.select("h3#tbmainlab.level2_title");
+                    crawler.subtitle = crawler.doc.select("strong.title_03");
+                    crawler.contents2 = crawler.doc.select("span.dash_bulTxt_txtIndent");
+                    crawler.contents = crawler.doc.select("div.prevent_text_grid");
+
+                    txtArea.append("[" + crawler.title.text() + "]\n");
+                    for (int i = 0; i < crawler.subtitle.size(); i++) {
+                        txtArea.append(crawler.subtitle.get(i).text() + "\n");
+
+                        if (i == 0 || i == 1) {
+                            for (String result : crawler.contents.get(i).text().split("\\.")) {
+                                txtArea.append(result + "\n");
+                            }
+                        } else {
+                            for (String result2 : crawler.contents2.get(i + 3).text().split("\\.")) {
+                                txtArea.append(result2 + "\n");
+                            }
+                        }
+                        txtArea.append("\n");
                     }
                     return txtArea;
                 } catch (IOException ex) {
                     Logger.getLogger(DaeChu.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                    break;
+                break;
+
+                case "원전사고":
+                    try {
+
+                    txtArea.setText(null);
+
+                    String url = "https://www.safekorea.go.kr/idsiSFK/neo/sfk/cs/contents/prevent/SDIJKM5128.html?menuSeq=127";
+                    Crawler crawler = new Crawler(url);
+
+                    crawler.title = crawler.doc.select("h4.title_02");
+                    crawler.subtitle = crawler.doc.select("h4.title_03");
+                    crawler.contents = crawler.doc.select("td");
+
+                    txtArea.append("[" + crawler.title.get(1).text() + "]\n");
+
+                    for (int i = 0; i < crawler.subtitle.size(); i++) {
+                        txtArea.append("-" + crawler.subtitle.get(i).text() + "\n");
+
+                        if (i == 0) {
+                            for (int k = 0; k < crawler.contents.size() - 3; k++) {
+                                for (String result : crawler.contents.get(k).text().split("\\.")) {
+                                    txtArea.append(result + "\n");
+                                }
+                            }
+                        }
+                        if (i == 1) {
+                            for (int k = 8; k < crawler.contents.size(); k++) {
+                                for (String result : crawler.contents.get(k).text().split("\\.")) {
+                                    txtArea.append(result + "\n");
+                                }
+                            }
+                        }
+
+                        txtArea.append("\n");
+                    }
+
+                    return txtArea;
+
+                } catch (IOException ex) {
+                    Logger.getLogger(DaeChu.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
                 default:
                     System.out.println("상황 대처법을 선택했다.");
             }
