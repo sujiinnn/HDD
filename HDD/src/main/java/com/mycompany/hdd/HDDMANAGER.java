@@ -31,20 +31,8 @@ public class HDDMANAGER extends JFrame {
         contentS.setBackground(Color.white);
         contentS.setLayout(null);
 
-        JPanel contentM = new JPanel();
-        contentM.setBounds(210, 0, 1000, 580);
-        contentM.setBackground(Color.white);
-        contentM.setLayout(null);
-
-        JPanel contentU = new JPanel();
-        contentU.setBounds(210, 0, 1000, 580);
-        contentU.setBackground(Color.white);
-        contentU.setLayout(null);
-
         managerScreen.add(contentA);
         managerScreen.add(contentS);
-        managerScreen.add(contentU);
-        managerScreen.add(contentM);
 
         JButton AccidentButton = new JButton("사건 / 사고");
         AccidentButton.setSize(200, 80);
@@ -57,18 +45,6 @@ public class HDDMANAGER extends JFrame {
         ShelterButton.setLocation(0, 102);
         ShelterButton.setBackground(Color.white);
         ShelterButton.setFont(new Font("휴먼둥근헤드라인", Font.PLAIN, 18));
-
-        JButton MethodButton = new JButton("대처 방법");
-        MethodButton.setSize(200, 80);
-        MethodButton.setLocation(0, 184);
-        MethodButton.setBackground(Color.white);
-        MethodButton.setFont(new Font("휴먼둥근헤드라인", Font.PLAIN, 18));
-
-        JButton UseButton = new JButton("안전도구 사용 방법");
-        UseButton.setSize(200, 80);
-        UseButton.setLocation(0, 266);
-        UseButton.setBackground(Color.white);
-        UseButton.setFont(new Font("휴먼둥근헤드라인", Font.PLAIN, 18));
 
         ImageIcon Logo = new ImageIcon("src\\main\\java\\com\\mycompany\\hdd\\LogoSmall.PNG");
         JLabel HDDLogo = new JLabel(Logo);
@@ -195,8 +171,6 @@ public class HDDMANAGER extends JFrame {
 
         managerScreen.add(AccidentButton);
         managerScreen.add(ShelterButton);
-        managerScreen.add(MethodButton);
-        managerScreen.add(UseButton);
         managerScreen.add(HDDLogo);
         managerScreen.add(BackButton);
 

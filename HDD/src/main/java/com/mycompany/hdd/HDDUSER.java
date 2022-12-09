@@ -167,36 +167,42 @@ public class HDDUSER extends JFrame {
         NextS.setBounds(580, 140, 100, 30);
         NextS.setBackground(new Color(248, 248, 248));
         NextS.setFont(new Font("맑은 고딕", Font.BOLD, 13));
+        
+        ButtonGroup DP = new ButtonGroup();
 
-        JCheckBox EmergencyS = new JCheckBox("지진해일 긴급대피장소");
-        JCheckBox OutsideS = new JCheckBox("지진 옥외대피장소");
-        JCheckBox CivilS = new JCheckBox("민방위 대피시설");
+        JRadioButton EmergencyS = new JRadioButton("지진해일 긴급대피장소");
+        EmergencyS.setBounds(20, 30, 200, 30);
+        EmergencyS.setFont(new Font("HY헤드라인M", Font.PLAIN, 15));
+
+        JRadioButton OutsideS = new JRadioButton("지진 옥외대피장소");
+        OutsideS.setBounds(20, 70, 200, 30);
+        OutsideS.setFont(new Font("HY헤드라인M", Font.PLAIN, 15));
 
         EmergencyS.setBounds(240, 55, 230, 30);
         OutsideS.setBounds(240, 95, 230, 30);
-        CivilS.setBounds(240, 135, 230, 30);
 
         EmergencyS.setFont(new Font("HY헤드라인M", Font.PLAIN, 15));
         OutsideS.setFont(new Font("HY헤드라인M", Font.PLAIN, 15));
-        CivilS.setFont(new Font("HY헤드라인M", Font.PLAIN, 15));
+        
+        DP.add(EmergencyS);
+        DP.add(OutsideS);
 
         contentS.add(ShelL);
         contentS.add(ChoiceLocation);
         contentS.add(NextS);
         contentS.add(EmergencyS);
         contentS.add(OutsideS);
-        contentS.add(CivilS);
         contentS.add(ChoiceS);
         contentS.add(InforM1);
         contentS.add(InforM2);
         contentS.add(InforM3);
 
         JLabel tt = new JLabel();
-        tt.setBounds(260, 180, 100, 30);
+        tt.setBounds(240, 145, 100, 30);
         tt.setFont(new Font("HY헤드라인M", Font.PLAIN, 15));
 
         JLabel announ = new JLabel("에 있는 대피시설입니다 !");
-        announ.setBounds(335, 180, 300, 30);
+        announ.setBounds(315, 145, 300, 30);
         announ.setFont(new Font("HY헤드라인M", Font.PLAIN, 15));
 
         //--------------------------------------------------------- 대피소
@@ -380,7 +386,7 @@ public class HDDUSER extends JFrame {
                             JLabel LER = new JLabel(LocationER);
                             JOptionPane.showMessageDialog(null, LER, " 지역 선택 오류", JOptionPane.WARNING_MESSAGE);
 
-                        } else if (!EmergencyS.isSelected() && !OutsideS.isSelected() && !CivilS.isSelected()) {
+                        } else if (!EmergencyS.isSelected() && !OutsideS.isSelected()) {
 
                             String ShelER = s1 + " 대피소 종류를 한 개 이상 선택해주세요. " + s2;
 
@@ -423,10 +429,7 @@ public class HDDUSER extends JFrame {
 
                 OutsideS.revalidate();
                 OutsideS.repaint();
-
-                CivilS.revalidate();
-                CivilS.repaint();
-
+                
                 InforM1.revalidate();
                 InforM1.repaint();
 
