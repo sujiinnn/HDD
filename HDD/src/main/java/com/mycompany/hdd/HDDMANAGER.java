@@ -138,29 +138,29 @@ public class HDDMANAGER extends JFrame {
                 die.revalidate();
                 die.repaint();
 
-                JButton btn = new JButton("수정");
-                JButton btn1 = new JButton("추가");
-                JButton btn2 = new JButton("삭제");
+                JButton Change = new JButton("수정");
+                JButton Plus = new JButton("추가");
+                JButton Except = new JButton("삭제");
 
-                btn.setBounds(630, 400, 100, 30);
-                btn1.setBounds(750, 400, 100, 30);
-                btn2.setBounds(870, 400, 100, 30);
+                Change.setBounds(630, 400, 100, 30);
+                Plus.setBounds(750, 400, 100, 30);
+                Except.setBounds(870, 400, 100, 30);
 
-                contentA.add(btn);
-                contentA.add(btn1);
-                contentA.add(btn2);
+                contentA.add(Change);
+                contentA.add(Plus);
+                contentA.add(Except);
 
                 // JFrame에 페널 추가
                 contentA.add(pane);
 
-                btn.revalidate();
-                btn.repaint();
+                Change.revalidate();
+                Change.repaint();
 
-                btn1.revalidate();
-                btn1.repaint();
+                Plus.revalidate();
+                Plus.repaint();
 
-                btn2.revalidate();
-                btn2.repaint();
+                Except.revalidate();
+                Except.repaint();
 
                 pane.revalidate();
                 pane.repaint();
@@ -168,6 +168,14 @@ public class HDDMANAGER extends JFrame {
                 // JFrame 화면 보이기
             }
         });
+        
+         AccidentButton.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+            }
+            });
 
         managerScreen.add(AccidentButton);
         managerScreen.add(ShelterButton);
