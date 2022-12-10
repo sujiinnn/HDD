@@ -1,6 +1,4 @@
-
 package com.mycompany.hdd;
-
 
 import com.google.gson.Gson;
 import java.io.FileWriter;

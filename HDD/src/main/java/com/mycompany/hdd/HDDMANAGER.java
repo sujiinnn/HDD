@@ -4,16 +4,29 @@
  */
 package com.mycompany.hdd;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 import javax.swing.*;
+import java.io.*;
+import java.lang.invoke.VolatileCallSite;
 import java.util.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 
 public class HDDMANAGER extends JFrame {
 
-    public HDDMANAGER() {
+    public HDDMANAGER() throws FileNotFoundException {
+        InputStreamReader in = new InputStreamReader(System.in);
+
 
         Container managerScreen = getContentPane();
         setTitle("호다닥 : 관리자 모드");
@@ -104,7 +117,7 @@ public class HDDMANAGER extends JFrame {
 
                 JTable jTable = new JTable(model);
 
-               // 스크롤 페널 생성
+                // 스크롤 페널 생성
                 JScrollPane pane = new JScrollPane(jTable);
                 setList(model, dataList);
                 pane.setBounds(00,00,1000,380);
@@ -120,13 +133,15 @@ public class HDDMANAGER extends JFrame {
                 JTextField die = new JTextField();
 
                 name.setBounds(20, 400, 200, 30);
+
                 contentA.add(name);
+                
                 name.revalidate();
                 name.repaint();
 
                 date.setBounds(250, 400, 250, 30);
-                contentA.add(date);
 
+                contentA.add(date);
                 date.revalidate();
                 date.repaint();
 
@@ -141,6 +156,7 @@ public class HDDMANAGER extends JFrame {
                 hurt.repaint();
 
                 die.setBounds(910, 400, 70, 30);
+
                 contentA.add(die);
                 die.revalidate();
                 die.repaint();
@@ -148,7 +164,7 @@ public class HDDMANAGER extends JFrame {
                 JButton Change = new JButton("수정");
                 JButton Plus = new JButton("추가");
                 JButton Except = new JButton("삭제");
-
+                
                 Change.setBounds(630, 440, 100, 30);
                 Plus.setBounds(750, 440, 100, 30);
                 Except.setBounds(870, 440, 100, 30);
@@ -229,13 +245,12 @@ public class HDDMANAGER extends JFrame {
                         jTable.repaint();
                     }
                 });
-
-                // JFrame 화면 보이기
+             
             }
         });
-        
-         ShelterButton.addActionListener(new ActionListener() {
 
+        ShelterButton.addActionListener(new ActionListener() {
+            
            public void setList(DefaultTableModel model, Shelter2 dataList){
                 model.setNumRows(0);
                 for(Shelter1 s : dataList.bunker){
@@ -515,6 +530,7 @@ public class HDDMANAGER extends JFrame {
                     }
                 });
             }
+
         });
 
         managerScreen.add(AccidentButton);

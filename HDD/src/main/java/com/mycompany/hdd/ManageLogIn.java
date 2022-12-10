@@ -1,4 +1,3 @@
-
 package com.mycompany.hdd;
 
 import javax.swing.*;
@@ -6,6 +5,9 @@ import java.util.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ManageLogIn extends JFrame{
 
@@ -55,8 +57,12 @@ public class ManageLogIn extends JFrame{
                 String PW = "22hashtag#";
                 String input = new String (passwordIN.getPassword());
                 
-                if (input.equals(PW)){ // 비밀번호 비교 (아마도 for 문)
+                if (input.equals(PW)){ try {
+                    // 비밀번호 비교 (아마도 for 문)
                     HDDMANAGER Manager = new HDDMANAGER();
+                    } catch (FileNotFoundException ex) {
+                        Logger.getLogger(ManageLogIn.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
                 
                 else {

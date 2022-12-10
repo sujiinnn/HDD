@@ -1,19 +1,18 @@
-
 package com.mycompany.hdd;
 
 import com.google.gson.Gson;
+
 import java.io.*;
 import java.util.ArrayList;
 
-public class sago1 {
-    
-     public ArrayList<sago> date1 ;
-     
-     public sago1(){
+class sago1 {
+    public ArrayList<sago> date1 ;
+
+
+    public sago1(){
         date1 = new ArrayList<>();
     }
-     
-     public static void saveInfo(sago1 data) {
+    public static void saveInfo(sago1 data) {
         try(FileWriter writer = new FileWriter("./data.txt")) {
             Gson gson = new Gson();
             gson.toJson(data, writer);
@@ -21,8 +20,8 @@ public class sago1 {
             throw new RuntimeException(e);
         } ;
     }
-     
-     public void setInfo(Pasing pasing){
+
+    public void setInfo(Pasing pasing){
         try {
             Reader reader = new FileReader("./data.txt");
             Gson gson = new Gson();
@@ -40,6 +39,8 @@ public class sago1 {
             }
 
         }
-     saveInfo(this);
-     }
+
+
+        saveInfo(this);
+    }
 }
