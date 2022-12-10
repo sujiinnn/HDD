@@ -1,0 +1,1 @@
+{"roof":[{"dtl_adres":"경상남도 진주시 상평동   272-1","vt_acmdfclty_nm":"진주기계공업고등학교 운동장"},{"dtl_adres":"경상남도 진주시 상평동   278-1","vt_acmdfclty_nm":"가람초등학교 운동장"},{"dtl_adres":"경상남도 진주시 하대동   119-1","vt_acmdfclty_nm":"동진초등학교 운동장"},{"dtl_adres":"경상남도 진주시 하대동   343-3","vt_acmdfclty_nm":"도동초등학교 운동장"},{"dtl_adres":"경상남도 진주시 하대동   105-0","vt_acmdfclty_nm":"한국폴리텍대학교 운동장"}]}
