@@ -14,14 +14,9 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
 
-/**
- *
- * @author samsung
- */
 public class Shelter {
 
     public Root root;
-
   
     public class Head {
 
@@ -53,8 +48,8 @@ public class Shelter {
         public String remarks;
         public String shel_nm;
         public String address;
-        public double lon;
-        public double lat;
+        public double lon; //위도
+        public double lat; //경도
         public int shel_av;
         public int lenth;
         public String shel_div_type;
@@ -67,13 +62,6 @@ public class Shelter {
         return root.TsunamiShelter.get(1).row.get(i).address;
     }
 
-    public double getlon(int i){ //위도
-        return  root.TsunamiShelter.get(1).row.get( i).lon;
-    }
-    
-    public double getlat(int i){
-        return  root.TsunamiShelter.get(1).row.get( i).lat;
-    }
     
   
     public class TsunamiShelter1 {
@@ -90,7 +78,7 @@ public class Shelter {
     private void accdient() {
         String ServiceKey = "RjKhXzPpeqFtJpjzT2dN7RYQ%2Fvo%2Bv1KDnDuKMbXDNk2LYbb%2BVhk5MDEroOrrhH8ujUGl2h%2FlapcU37VgCi1gvA%3D%3D";
         String url1 = "http://www.data.go.kr/data/3058512/openapi.do?recommendDataYn=Y";
-        String numOfRows = "1000";
+        String numOfRows = "10";
         String PageNo = "1";
         String result;
         String type = "Json";

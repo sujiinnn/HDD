@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 public class Pasing {
 
+    public static Object Datum;
     public Root root;
 
     public class Datum{
@@ -30,8 +31,7 @@ public class Pasing {
         public String 조치사항;
     }
 
-    public String get발생일(int i) {
-        return root.data.get(i).발생일;
+    public String get발생일(int i) {return root.data.get(i).발생일;
     }
     public String get발생장소(int i) {
         return root.data.get(i).발생장소;
@@ -44,12 +44,6 @@ public class Pasing {
     }
     public int get사망(int i) {
         return root.data.get(1).사망;
-    }
-    public int get실종(int i) {
-        return root.data.get(1).실종;
-    }
-    public int get인명피해(int i) {
-        return root.data.get(1).인명피해;
     }
     public class Root{
         public int currentCount;
@@ -74,7 +68,7 @@ public class Pasing {
     private void accdient() {
         String ServiceKey = "RjKhXzPpeqFtJpjzT2dN7RYQ%2Fvo%2Bv1KDnDuKMbXDNk2LYbb%2BVhk5MDEroOrrhH8ujUGl2h%2FlapcU37VgCi1gvA%3D%3D";
         String url1 = "https://www.data.go.kr/data/15083554/fileData.do";
-        String perPage = "3000";
+        String perPage = "10";
         String Page = "1";
         String result;
         String type = "Json";
@@ -84,6 +78,7 @@ public class Pasing {
             BufferedReader br;
             br = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"));
             result = br.readLine();
+            String array[] = result.split(" ");
             Gson gson = new Gson();
             root = gson.fromJson(result, Root.class);
 
@@ -95,7 +90,7 @@ public class Pasing {
     }
 
     private void asdasd() {
-        try ( FileWriter writer = new FileWriter("./rungo1.txt")) {
+        try ( FileWriter writer = new FileWriter("./run.txt")) {
             Gson gson = new Gson();
             gson.toJson(this, writer);
             writer.flush();
@@ -104,4 +99,9 @@ public class Pasing {
             e.getStackTrace();
         }
     }
+
+    public static void main(String[] args) {
+        new Pasing();
+    }
 }
+
