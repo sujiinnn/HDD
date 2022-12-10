@@ -27,7 +27,7 @@ public class HDDMANAGER extends JFrame {
         contentA.setLayout(null);
 
         JPanel contentS = new JPanel();
-        contentS.setBounds(210, 0, 100, 580);
+        contentS.setBounds(210, 0, 1000, 580);
         contentS.setBackground(Color.white);
         contentS.setLayout(null);
 
@@ -56,6 +56,18 @@ public class HDDMANAGER extends JFrame {
         BackButton.setSize(80, 80);
         BackButton.setLocation(120, 365);
         BackButton.setBackground(Color.white);
+        
+        JButton EmergencyS  = new JButton("지진해일 긴급대피장소");
+        EmergencyS.setBounds(20, 10, 200, 30);
+        EmergencyS.setFont(new Font("HY헤드라인M", Font.PLAIN, 15));
+
+        JButton OutsideS = new JButton("지진 옥외대피장소");
+        OutsideS.setBounds(270, 10, 200, 30);
+        OutsideS.setFont(new Font("HY헤드라인M", Font.PLAIN, 15));
+        
+        contentS.add(EmergencyS);
+        contentS.add(OutsideS);
+
 
         BackButton.addActionListener(new ActionListener() {
 
@@ -67,42 +79,37 @@ public class HDDMANAGER extends JFrame {
         });
 
         AccidentButton.addActionListener(new ActionListener() {
+            
+            public void setList(DefaultTableModel model, sago1 dataList){
+                model.setNumRows(0);
+                for(sago s : dataList.date1){
+                    String[] str = {s.재난상황명, s.발생일, s.발생장소, s.부상.toString(), s.사망.toString()};
+                    model.addRow(str);
+                }
+            }
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                
+                contentS.setVisible(false);
+                contentA.setVisible(true);
 
                 Pasing nomal = new Pasing();
+                
+                sago1 dataList = new sago1();
+                dataList.setInfo(nomal);
+                ArrayList<String> dtm = new ArrayList<>();
+                String[] header = {"재난상황명", "발생일", "발생장소", "부상", "사망"};
+                DefaultTableModel model = new DefaultTableModel(null , header);
 
-                contentA.setVisible(true);
-                
-                Vector columnNames = new Vector<>();
-                columnNames.add("재난상황명");
-                columnNames.add("발생일");
-                columnNames.add("발생장소");
-                columnNames.add("부상");
-                columnNames.add("사망");
-                //columnNames.add("실종");
-                //columnNames.add("인명피해");
+                JTable jTable = new JTable(model);
 
-                // 레코드(Record, Row) 생성
-                DefaultTableModel dtm = new DefaultTableModel(null, columnNames);
-                System.out.println(nomal.root.data.size());
-                for (Pasing.Datum d : nomal.root.data) {
-                    String str[] = {d.재난상황명, d.발생일, d.발생장소, String.valueOf(d.부상), String.valueOf(d.사망)};
-//, String.valueOf(d.실종), String.valueOf(d.인명피해)};
-                    if (d.발생일.contains("2019") && d.발생장소.contains("금정구")) {
-                        dtm.addRow(str);
-                
-                    }
-                }
-  
-                JTable jTable = new JTable(dtm);
-                
-                // 스크롤 페널 생성
+               // 스크롤 페널 생성
                 JScrollPane pane = new JScrollPane(jTable);
-                pane.setBounds(00,00,1000,380); 
+                setList(model, dataList);
+                pane.setBounds(00,00,1000,380);
                 //pane.setPreferredSize(new Dimension(400, 300));
-                
+  
                 jTable.revalidate();
                 jTable.repaint();
 
@@ -112,28 +119,28 @@ public class HDDMANAGER extends JFrame {
                 JTextField hurt = new JTextField();
                 JTextField die = new JTextField();
 
-                name.setBounds(20, 400, 100, 30);
+                name.setBounds(20, 400, 200, 30);
                 contentA.add(name);
                 name.revalidate();
                 name.repaint();
 
-                date.setBounds(140, 400, 100, 30);
+                date.setBounds(250, 400, 250, 30);
                 contentA.add(date);
 
                 date.revalidate();
                 date.repaint();
 
-                Lo.setBounds(260, 400, 100, 30);
+                Lo.setBounds(530, 400, 250, 30);
                 contentA.add(Lo);
                 Lo.revalidate();
                 Lo.repaint();
 
-                hurt.setBounds(380, 400, 100, 30);
+                hurt.setBounds(810, 400, 70, 30);
                 contentA.add(hurt);
                 hurt.revalidate();
                 hurt.repaint();
 
-                die.setBounds(500, 400, 100, 30);
+                die.setBounds(910, 400, 70, 30);
                 contentA.add(die);
                 die.revalidate();
                 die.repaint();
@@ -142,9 +149,9 @@ public class HDDMANAGER extends JFrame {
                 JButton Plus = new JButton("추가");
                 JButton Except = new JButton("삭제");
 
-                Change.setBounds(630, 400, 100, 30);
-                Plus.setBounds(750, 400, 100, 30);
-                Except.setBounds(870, 400, 100, 30);
+                Change.setBounds(630, 440, 100, 30);
+                Plus.setBounds(750, 440, 100, 30);
+                Except.setBounds(870, 440, 100, 30);
 
                 contentA.add(Change);
                 contentA.add(Plus);
@@ -164,23 +171,359 @@ public class HDDMANAGER extends JFrame {
 
                 pane.revalidate();
                 pane.repaint();
+                
+                Change.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        int selection = jTable.getSelectedRow();
+                        sago s = new sago();
+                        s.재난상황명 = name.getText();
+                        s.발생일 = date.getText();
+                        s.발생장소 = Lo.getText();
+                        s.부상 = Integer.valueOf(hurt.getText());
+                        s.사망 = Integer.valueOf(die.getText());
+                        dataList.date1.set(selection, s);
+                        sago1.saveInfo(dataList);
+                        setList(model, dataList);
+                        name.setText("");
+                        date.setText("");
+                        Lo.setText("");
+                        hurt.setText("");
+                        die.setText("");
+                    }
+
+                });
+                
+                Plus.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        sago s = new sago();
+                        s.재난상황명 = name.getText();
+                        s.발생일 = date.getText();
+                        s.발생장소 = Lo.getText();
+                        s.부상 = Integer.valueOf(hurt.getText());
+                        s.사망 = Integer.valueOf(die.getText());
+
+                        dataList.date1.add(s);
+                        sago1.saveInfo(dataList);
+                        setList(model, dataList);
+                        name.setText("");
+                        date.setText("");
+                        Lo.setText("");
+                        hurt.setText("");
+                        die.setText("");
+
+                        jTable.revalidate();
+                        jTable.repaint();
+                    }
+                });
+                
+                Except.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        int selection = jTable.getSelectedRow();
+                        dataList.date1.remove(selection);
+                        sago1.saveInfo(dataList);
+                        setList(model, dataList);
+                        jTable.revalidate();
+                        jTable.repaint();
+                    }
+                });
 
                 // JFrame 화면 보이기
             }
         });
         
-         AccidentButton.addActionListener(new ActionListener() {
+         ShelterButton.addActionListener(new ActionListener() {
 
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                
+           public void setList(DefaultTableModel model, Shelter2 dataList){
+                model.setNumRows(0);
+                for(Shelter1 s : dataList.bunker){
+                    String[] str = {s.shel_nm, s.address};
+                    model.addRow(str);
+                }
             }
-            });
+            public void setList(DefaultTableModel model, rooftop2 dataList){
+                model.setNumRows(0);
+                for(rooftop1 r : dataList.roof){
+                    String[] str1 = {r.vt_acmdfclty_nm, r.dtl_adres};
+                    model.addRow(str1);
+                }
+            }
+             @Override
+            public void actionPerformed(ActionEvent e) {
+
+                contentS.setVisible(true);
+                contentA.setVisible(false);
+
+                EmergencyS.revalidate();
+                EmergencyS.repaint();
+                
+                OutsideS.revalidate();
+                OutsideS.repaint();
+
+                JPanel contentSE = new JPanel();
+                contentSE.setBounds(0, 0, 1000, 480);
+                contentSE.setBackground(Color.white);
+                contentSE.setLayout(null);
+
+                JPanel contentSO = new JPanel();
+                contentSO.setBounds(0, 0, 1000, 480);
+                contentSO.setBackground(Color.white);
+                contentSO.setLayout(null);
+
+                contentS.add(contentSE);
+                contentS.add(contentSO);
+
+
+                     EmergencyS.addActionListener(new ActionListener() {
+
+                    public void actionPerformed(ActionEvent e) {
+
+                        contentSE.setVisible(true);
+                        contentSO.setVisible(false);
+
+                        Shelter nomal1 = new Shelter();
+
+                        Shelter2 dataList = new Shelter2();
+                        dataList.setInfo(nomal1);
+                        ArrayList<String> dtm = new ArrayList<>();
+                        String[] header = {"상세 이름", "대피소 주소"};
+                        DefaultTableModel model = new DefaultTableModel(null, header);
+
+                        JTable sTable = new JTable(model);
+
+                        // 스크롤 페널 생성
+                        JScrollPane pane = new JScrollPane(sTable);
+                        setList(model, dataList);
+                        pane.setBounds(00, 50, 1000, 330);
+                        //pane.setPreferredSize(new Dimension(400, 300));
+
+                        sTable.revalidate();
+                        sTable.repaint();
+
+                        JTextField shel_name = new JTextField();
+                        JTextField address_name = new JTextField();
+
+
+                        shel_name.setBounds(50, 400, 200, 30);
+                        contentSE.add(shel_name);
+                        shel_name.revalidate();
+                        shel_name.repaint();
+
+                        address_name.setBounds(280, 400, 300, 30);
+                        contentSE.add(address_name);
+
+                        address_name.revalidate();
+                        address_name.repaint();
+
+                        JButton Change = new JButton("수정");
+                        JButton Plus = new JButton("추가");
+                        JButton Except = new JButton("삭제");
+
+                        Change.setBounds(630, 400, 100, 30);
+                        Plus.setBounds(750, 400, 100, 30);
+                        Except.setBounds(870, 400, 100, 30);
+
+                        contentSE.add(Change);
+                        contentSE.add(Plus);
+                        contentSE.add(Except);
+
+                        // JFrame에 페널 추가
+                        contentSE.add(pane);
+
+                        Change.revalidate();
+                        Change.repaint();
+
+                        Plus.revalidate();
+                        Plus.repaint();
+
+                        Except.revalidate();
+                        Except.repaint();
+
+                        pane.revalidate();
+                        pane.repaint();
+
+                        // JFrame 화면 보이기
+                        
+                         Change.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                int selection = sTable.getSelectedRow();
+                                Shelter1 s = new Shelter1();
+                                s.shel_nm = shel_name.getText();
+                                s.address = address_name.getText();
+
+                                dataList.bunker.set(selection, s);
+                                Shelter2.saveInfo(dataList);
+                                setList(model, dataList);
+                                shel_name.setText("");
+                                address_name.setText("");
+                            }
+                        });
+
+                        Plus.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                Shelter1 s = new Shelter1();
+                                s.shel_nm = shel_name.getText();
+                                s.address = address_name.getText();
+
+                                dataList.bunker.add(s);
+                                Shelter2.saveInfo(dataList);
+                                setList(model, dataList);
+                                shel_name.setText("");
+                                address_name.setText("");
+
+                                sTable.revalidate();
+                                sTable.repaint();
+                            }
+                        });
+                        
+                        Except.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                int selection = sTable.getSelectedRow();
+                                dataList.bunker.remove(selection);
+                                Shelter2.saveInfo(dataList);
+                                setList(model, dataList);
+                                
+                                sTable.revalidate();
+                                sTable.repaint();
+                            }
+                        });
+                        
+                    }
+                });
+
+                     OutsideS.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+
+                        contentSE.setVisible(false);
+                        contentSO.setVisible(true);
+
+
+                        rooftop nomal2 = new rooftop();
+
+                        rooftop2 dataList = new rooftop2();
+                        dataList.set1Info(nomal2);
+                        ArrayList<String> dtm = new ArrayList<>();
+                        String[] header = {"상세 이름", "대피소 주소"};
+                        DefaultTableModel model = new DefaultTableModel(null, header);
+
+                        JTable sTable = new JTable(model);
+
+                        // 스크롤 페널 생성
+                        JScrollPane pane = new JScrollPane(sTable);
+                        setList(model, dataList);
+                        pane.setBounds(00, 50, 1000, 330);
+                        //pane.setPreferredSize(new Dimension(400, 300));
+
+                        sTable.revalidate();
+                        sTable.repaint();
+
+                        JTextField name = new JTextField();
+                        JTextField addname = new JTextField();
+
+                        name.setBounds(50, 400, 200, 30);
+                        contentSO.add(name);
+                        name.revalidate();
+                        name.repaint();
+
+                        addname.setBounds(280, 400, 300, 30);
+                        contentSO.add(addname);
+
+                        addname.revalidate();
+                        addname.repaint();
+
+                        JButton Change = new JButton("수정");
+                        JButton Plus = new JButton("추가");
+                        JButton Except = new JButton("삭제");
+
+                        Change.setBounds(630, 400, 100, 30);
+                        Plus.setBounds(750, 400, 100, 30);
+                        Except.setBounds(870, 400, 100, 30);
+
+                        contentSO.add(Change);
+                        contentSO.add(Plus);
+                        contentSO.add(Except);
+
+                        // JFrame에 페널 추가
+                        contentSO.add(pane);
+
+                        Change.revalidate();
+                        Change.repaint();
+
+                        Plus.revalidate();
+                        Plus.repaint();
+
+                        Except.revalidate();
+                        Except.repaint();
+
+                        pane.revalidate();
+                        pane.repaint();
+
+                        // JFrame 화면 보이기
+                        
+                        Change.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                int selection = sTable.getSelectedRow();
+                                rooftop1 r = new rooftop1();
+                                r.vt_acmdfclty_nm = name.getText();
+                                r.dtl_adres = addname.getText();
+
+                                dataList.roof.set(selection, r);
+                                rooftop2.save1Info(dataList);
+                                setList(model, dataList);
+                                name.setText("");
+                                addname.setText("");
+                            }
+                        });
+
+                        Plus.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                rooftop1 r = new rooftop1();
+                                r.vt_acmdfclty_nm = name.getText();
+                                r.dtl_adres = addname.getText();
+
+                                dataList.roof.add(r);
+                                rooftop2.save1Info(dataList);
+                                setList(model, dataList);
+                                name.setText("");
+                                addname.setText("");
+
+                                sTable.revalidate();
+                                sTable.repaint();
+                            }
+                        });
+                        
+                        Except.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                int selection = sTable.getSelectedRow();
+                                dataList.roof.remove(selection);
+                                rooftop2.save1Info(dataList);
+                                setList(model, dataList);
+                                sTable.revalidate();
+                                sTable.repaint();
+                            }
+                        });
+                        
+                    }
+                });
+            }
+        });
 
         managerScreen.add(AccidentButton);
         managerScreen.add(ShelterButton);
         managerScreen.add(HDDLogo);
         managerScreen.add(BackButton);
+        
+        contentA.setVisible(false);
+        contentS.setVisible(false);
 
         setVisible(true);
 
